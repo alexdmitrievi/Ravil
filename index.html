@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Дорожная карта: От мастерской к мануфактуре</title>
+    <title>Дорожная карта 2026: От мастерской к мануфактуре</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700&display=swap');
         
@@ -15,24 +15,11 @@
             --cream: #F5F1E8;
             --dark: #2C1810;
             --sage: #8B9A7E;
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 3rem;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        html {
-            scroll-behavior: smooth;
-            -webkit-text-size-adjust: 100%;
-        }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -42,20 +29,9 @@
             font-size: 16px;
         }
         
-        /* Container with mobile-first padding */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        @media (min-width: 768px) { .container { padding: 0 2rem; } }
         
-        @media (min-width: 768px) {
-            .container {
-                padding: 0 2rem;
-            }
-        }
-        
-        /* Header - mobile optimized */
         header {
             background: linear-gradient(135deg, var(--burgundy), var(--dark));
             color: white;
@@ -68,14 +44,12 @@
             font-size: clamp(1.75rem, 8vw, 4rem);
             margin-bottom: 0.75rem;
             line-height: 1.2;
-            word-wrap: break-word;
         }
         
         .subtitle {
             font-size: clamp(1rem, 4vw, 1.3rem);
             opacity: 0.9;
             margin-bottom: 1rem;
-            line-height: 1.4;
         }
         
         .header-stats {
@@ -87,13 +61,9 @@
         }
         
         @media (min-width: 640px) {
-            .header-stats {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 1rem;
-            }
+            .header-stats { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
         }
         
-        /* Navigation - mobile hamburger menu */
         nav {
             background: white;
             padding: 0;
@@ -114,18 +84,10 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            user-select: none;
         }
         
-        .nav-toggle::after {
-            content: '▼';
-            float: right;
-            transition: transform 0.3s;
-        }
-        
-        .nav-toggle.active::after {
-            transform: rotate(180deg);
-        }
+        .nav-toggle::after { content: '▼'; float: right; transition: transform 0.3s; }
+        .nav-toggle.active::after { transform: rotate(180deg); }
         
         nav ul {
             list-style: none;
@@ -135,13 +97,8 @@
             margin: 0;
         }
         
-        nav ul.active {
-            display: flex;
-        }
-        
-        nav li {
-            border-bottom: 1px solid #eee;
-        }
+        nav ul.active { display: flex; }
+        nav li { border-bottom: 1px solid #eee; }
         
         nav a {
             display: block;
@@ -153,64 +110,27 @@
             font-size: 0.95rem;
         }
         
-        nav a:active {
-            background: var(--burgundy);
-            color: white;
-        }
+        nav a:active { background: var(--burgundy); color: white; }
         
         @media (min-width: 768px) {
-            .nav-toggle {
-                display: none;
-            }
-            
-            nav ul {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-                justify-content: center;
-                padding: 1rem;
-            }
-            
-            nav li {
-                border: none;
-            }
-            
-            nav a {
-                padding: 0.5rem 1rem;
-                border-radius: 8px;
-            }
-            
-            nav a:hover {
-                background: var(--burgundy);
-                color: white;
-            }
+            .nav-toggle { display: none; }
+            nav ul { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.5rem; justify-content: center; padding: 1rem; }
+            nav li { border: none; }
+            nav a { padding: 0.5rem 1rem; border-radius: 8px; }
+            nav a:hover { background: var(--burgundy); color: white; }
         }
         
-        /* Sections - mobile spacing */
-        section {
-            padding: 2rem 0;
-            scroll-margin-top: 60px;
-        }
+        section { padding: 2rem 0; scroll-margin-top: 60px; }
+        @media (min-width: 768px) { section { padding: 4rem 0; } }
         
-        @media (min-width: 768px) {
-            section {
-                padding: 4rem 0;
-            }
-        }
+        section:nth-child(even) { background: rgba(255, 255, 255, 0.4); }
         
-        section:nth-child(even) {
-            background: rgba(255, 255, 255, 0.4);
-        }
-        
-        /* Typography - responsive */
         h2 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(1.75rem, 6vw, 3rem);
             color: var(--burgundy);
             margin-bottom: 1.5rem;
             line-height: 1.2;
-            word-wrap: break-word;
         }
         
         h3 {
@@ -227,12 +147,8 @@
             font-weight: 600;
         }
         
-        p {
-            margin-bottom: 1rem;
-            line-height: 1.7;
-        }
+        p { margin-bottom: 1rem; line-height: 1.7; }
         
-        /* Tables - mobile scrollable */
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -250,50 +166,19 @@
             font-size: 0.9rem;
         }
         
-        @media (min-width: 768px) {
-            table {
-                font-size: 1rem;
-            }
-        }
+        @media (min-width: 768px) { table { font-size: 1rem; } }
         
-        thead {
-            background: var(--burgundy);
-            color: white;
-        }
+        thead { background: var(--burgundy); color: white; }
         
-        th, td {
-            padding: 0.75rem 0.5rem;
-            text-align: left;
-        }
+        th, td { padding: 0.75rem 0.5rem; text-align: left; }
+        @media (min-width: 768px) { th, td { padding: 1rem 1.5rem; } }
         
-        @media (min-width: 768px) {
-            th, td {
-                padding: 1rem 1.5rem;
-            }
-        }
+        th { font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem; }
+        @media (min-width: 768px) { th { font-size: 0.9rem; } }
         
-        th {
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-size: 0.75rem;
-        }
+        tbody tr { border-bottom: 1px solid #eee; }
+        tbody tr:active { background: rgba(107, 31, 60, 0.03); }
         
-        @media (min-width: 768px) {
-            th {
-                font-size: 0.9rem;
-            }
-        }
-        
-        tbody tr {
-            border-bottom: 1px solid #eee;
-        }
-        
-        tbody tr:active {
-            background: rgba(107, 31, 60, 0.03);
-        }
-        
-        /* Cards - mobile stacking */
         .card-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -301,19 +186,8 @@
             margin: 1.5rem 0;
         }
         
-        @media (min-width: 640px) {
-            .card-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .card-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2rem;
-            }
-        }
+        @media (min-width: 640px) { .card-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+        @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
         
         .card {
             background: white;
@@ -324,13 +198,9 @@
         }
         
         @media (hover: hover) {
-            .card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 8px 30px rgba(107, 31, 60, 0.15);
-            }
+            .card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(107, 31, 60, 0.15); }
         }
         
-        /* Team boxes */
         .team-hero {
             background: linear-gradient(135deg, var(--sage), var(--burgundy));
             border-radius: 16px;
@@ -339,13 +209,8 @@
             color: white;
         }
         
-        @media (min-width: 768px) {
-            .team-hero {
-                padding: 2.5rem;
-            }
-        }
+        @media (min-width: 768px) { .team-hero { padding: 2.5rem; } }
         
-        /* Highlight boxes */
         .highlight {
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(184, 115, 51, 0.1));
             border-left: 4px solid var(--gold);
@@ -354,29 +219,13 @@
             border-radius: 0 8px 8px 0;
         }
         
-        @media (min-width: 768px) {
-            .highlight {
-                padding: 1.5rem 2rem;
-            }
-        }
+        @media (min-width: 768px) { .highlight { padding: 1.5rem 2rem; } }
         
-        .highlight h3,
-        .highlight h4 {
-            margin-top: 0;
-        }
+        .highlight h3, .highlight h4 { margin-top: 0; }
         
-        /* Lists - mobile friendly */
-        ul, ol {
-            margin: 1rem 0 1rem 1.25rem;
-            line-height: 1.8;
-        }
+        ul, ol { margin: 1rem 0 1rem 1.25rem; line-height: 1.8; }
+        li { margin: 0.5rem 0; padding-left: 0.25rem; }
         
-        li {
-            margin: 0.5rem 0;
-            padding-left: 0.25rem;
-        }
-        
-        /* Summary stats */
         .stat-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -384,17 +233,8 @@
             margin: 1.5rem 0;
         }
         
-        @media (min-width: 640px) {
-            .stat-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .stat-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
+        @media (min-width: 640px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .stat-grid { grid-template-columns: repeat(3, 1fr); } }
         
         .stat-box {
             background: rgba(255,255,255,0.15);
@@ -411,12 +251,8 @@
             margin-bottom: 0.5rem;
         }
         
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
+        .stat-label { font-size: 0.9rem; opacity: 0.9; }
         
-        /* Badges - mobile friendly */
         .badge {
             display: inline-block;
             padding: 0.35rem 0.75rem;
@@ -427,12 +263,8 @@
             white-space: nowrap;
         }
         
-        .badge-success {
-            background: var(--sage);
-            color: white;
-        }
+        .badge-success { background: var(--sage); color: white; }
         
-        /* Footer */
         footer {
             background: var(--dark);
             color: white;
@@ -441,76 +273,27 @@
             margin-top: 3rem;
         }
         
-        /* Touch-friendly buttons */
-        button, .btn {
-            min-height: 44px;
-            min-width: 44px;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-        
-        /* Print styles */
         @media print {
-            nav, .nav-toggle {
-                display: none;
-            }
-            
-            section {
-                page-break-inside: avoid;
-                padding: 1rem 0;
-            }
-            
-            .table-wrapper {
-                overflow: visible;
-            }
-            
-            table {
-                min-width: auto;
-                font-size: 0.8rem;
-            }
+            nav, .nav-toggle { display: none; }
+            section { page-break-inside: avoid; padding: 1rem 0; }
+            .table-wrapper { overflow: visible; }
+            table { min-width: auto; font-size: 0.8rem; }
         }
         
-        /* Animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        section { animation: fadeIn 0.6s ease; }
         
-        section {
-            animation: fadeIn 0.6s ease;
-        }
-        
-        /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
         }
         
-        /* Focus styles for keyboard navigation */
-        a:focus,
-        button:focus {
-            outline: 2px solid var(--gold);
-            outline-offset: 2px;
-        }
+        a:focus, button:focus { outline: 2px solid var(--gold); outline-offset: 2px; }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>📐 Дорожная карта проекта</h1>
+            <h1>📐 Дорожная карта 2026</h1>
             <p class="subtitle">Трансформация мастерской в авторскую мануфактуру</p>
             
             <div class="header-stats">
@@ -567,11 +350,11 @@
                 </div>
                 
                 <div class="card">
-                    <h4>👨‍👩‍👧 Помощник</h4>
-                    <p><strong>Дочь Равиля</strong></p>
+                    <h4>🤝 Помощник</h4>
+                    <p><strong>Координатор проекта</strong></p>
                     <ul style="margin-left: 0; list-style: none; font-size: 0.9rem;">
-                        <li>✅ Координация</li>
-                        <li>✅ Администрирование</li>
+                        <li>✅ Координация всех этапов</li>
+                        <li>✅ Административная поддержка</li>
                         <li>✅ Связь с клиентами</li>
                     </ul>
                     <p class="badge badge-success" style="display: block; text-align: center; margin-top: 1rem;">БЕСПЛАТНО</p>
@@ -591,7 +374,7 @@
             </div>
             
             <div class="highlight">
-                <h3>💰 ЭКОНОМИЯ ОТ КОМАНДЫ</h3>
+                <h3>💰 ЭКОНОМИЯ ОТ КОМАНДЫ (рыночные цены 2025)</h3>
                 
                 <div class="table-wrapper">
                     <table>
@@ -604,17 +387,17 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Сайт + поддержка</td>
-                                <td>440к ₽</td>
-                                <td><strong>440к ₽</strong></td>
+                                <td>Сайт-портфолио + поддержка</td>
+                                <td>240к ₽</td>
+                                <td><strong>240к ₽</strong></td>
                             </tr>
                             <tr>
-                                <td>Автоматизация</td>
-                                <td>690к ₽</td>
-                                <td><strong>690к ₽</strong></td>
+                                <td>Автоматизация (CRM, email)</td>
+                                <td>180к ₽</td>
+                                <td><strong>180к ₽</strong></td>
                             </tr>
                             <tr>
-                                <td>Бухгалтер</td>
+                                <td>Бухгалтер-консультант</td>
                                 <td>360к ₽</td>
                                 <td><strong>360к ₽</strong></td>
                             </tr>
@@ -624,29 +407,39 @@
                                 <td><strong>180к ₽</strong></td>
                             </tr>
                             <tr>
-                                <td>Бизнес-архитектор</td>
-                                <td>1 800к ₽</td>
-                                <td><strong>1 800к ₽</strong></td>
+                                <td>Бизнес-консультант</td>
+                                <td>360к ₽</td>
+                                <td><strong>360к ₽</strong></td>
                             </tr>
                             <tr>
-                                <td>Помощник</td>
+                                <td>Помощник/координатор</td>
                                 <td>1 080к ₽</td>
                                 <td><strong>1 080к ₽</strong></td>
                             </tr>
                             <tr style="background: rgba(139, 154, 126, 0.1); font-weight: 700;">
                                 <td>ИТОГО:</td>
-                                <td colspan="2" style="color: var(--sage); font-size: 1.2rem;">4 550 000 ₽</td>
+                                <td colspan="2" style="color: var(--sage); font-size: 1.2rem;">2 400 000 ₽</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 
+                <div style="background: white; padding: 1rem; border-radius: 8px; margin-top: 1rem; font-size: 0.9rem;">
+                    <p><em>*Источники рыночных цен 2025 года:</em></p>
+                    <p><em>• Сайт-портфолио: ~70-80к разработка и поддержка = 240к за 3 года</em></p>
+                    <p><em>• Автоматизация CRM + email: ~150-200к = 180к за 3 года</em></p>
+                    <p><em>• Аутсорсинг бухгалтерии: 10к/мес для малого бизнеса = 360к за 3 года (данные "Моё дело", Fingu.ru, ПЭБ)</em></p>
+                    <p><em>• Налоговый консультант: 5к/мес = 180к за 3 года</em></p>
+                    <p><em>• Бизнес-консультант: 10к/мес регулярные консультации = 360к за 3 года</em></p>
+                    <p><em>• Помощник/координатор: 30к/мес средняя ЗП = 1 080к за 3 года</em></p>
+                </div>
+                
                 <div style="background: white; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
                     <h4 style="margin-bottom: 0.75rem;">🎯 Преимущества:</h4>
                     <ul style="font-size: 0.95rem;">
-                        <li>Стартовые инвестиции <strong>↓ 230 000 ₽</strong></li>
-                        <li>Ежемесячные расходы <strong>↓ 120 000 ₽</strong></li>
-                        <li>Прибыль <strong>↑ 1,5 млн ₽/год</strong></li>
+                        <li>Стартовые инвестиции <strong>↓ 100 000 ₽</strong></li>
+                        <li>Ежемесячные расходы <strong>↓ 67 000 ₽</strong></li>
+                        <li>Прибыль <strong>↑ 800 000 ₽/год</strong></li>
                         <li>Скорость запуска <strong>×2 быстрее</strong></li>
                     </ul>
                 </div>
@@ -656,10 +449,10 @@
 
     <section id="geo" style="background: rgba(255,255,255,0.4);">
         <div class="container">
-            <h2>🌍 GEO-стратегия</h2>
+            <h2>🌍 GEO-стратегия 2026</h2>
             
             <h3>TIER 1 — Высокий приоритет</h3>
-            <p><em>Старт: месяцы 1-6</em></p>
+            <p><em>Старт: январь-июнь 2026</em></p>
             
             <div class="table-wrapper">
                 <table>
@@ -775,19 +568,19 @@
 
     <section id="roadmap" style="background: rgba(255,255,255,0.4);">
         <div class="container">
-            <h2>🗺️ Первый квартал</h2>
+            <h2>🗺️ Первый квартал 2026</h2>
             
-            <h3>МЕСЯЦ 1: Инфраструктура</h3>
+            <h3>ЯНВАРЬ 2026: Инфраструктура</h3>
             <ul>
-                <li>Фотосессия (25к ₽)</li>
+                <li>Фотосессия работ в AI (<s>25к</s> <strong style="color: var(--sage);">БЕСПЛАТНО</strong>)</li>
                 <li>Сайт (<s>40к</s> <strong style="color: var(--sage);">БЕСПЛАТНО</strong>)</li>
                 <li>База 180-220 контактов</li>
                 <li>Менеджер (30к/мес)</li>
                 <li>CRM (<s>12к</s> <strong style="color: var(--sage);">БЕСПЛАТНО</strong>)</li>
             </ul>
-            <p><strong>Инвестиции:</strong> 55к вместо 117к</p>
+            <p><strong>Инвестиции:</strong> 30к вместо 77к</p>
             
-            <h3>МЕСЯЦ 2: Первые продажи</h3>
+            <h3>ФЕВРАЛЬ 2026: Первые продажи</h3>
             <ul>
                 <li>Email-рассылка 110 писем</li>
                 <li>Звонки → 20-25 встреч</li>
@@ -796,7 +589,7 @@
             </ul>
             <p><strong>Результат:</strong> 0,75-1,25 млн выручки</p>
             
-            <h3>МЕСЯЦ 3: Расширение</h3>
+            <h3>МАРТ 2026: Расширение</h3>
             <ul>
                 <li>Производство 3-5 изделий</li>
                 <li>Екатеринбург + Тюмень</li>
@@ -806,7 +599,7 @@
             <p><strong>Результат:</strong> 1,25-2,15 млн выручки</p>
             
             <div class="highlight">
-                <h4>📊 ИТОГИ КВАРТАЛА 1:</h4>
+                <h4>📊 ИТОГИ Q1 2026:</h4>
                 <ul>
                     <li>✅ Сделок: 7-11</li>
                     <li>✅ Выручка: 1,5-2,4 млн</li>
@@ -882,7 +675,7 @@
 
     <section id="grants" style="background: rgba(255,255,255,0.4);">
         <div class="container">
-            <h2>💰 Господдержка</h2>
+            <h2>💰 Господдержка 2026</h2>
             
             <div class="highlight">
                 <h3 style="margin-top: 0;">✅ Производство мебели = ПРИОРИТЕТ</h3>
@@ -902,7 +695,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>1. Налог. каникулы</strong></td>
+                            <td><strong>1. Налог. каникалы</strong></td>
                             <td>0% УСН, 2 года</td>
                             <td style="color: var(--sage); font-weight: 700;">1 842к ₽</td>
                         </tr>
@@ -952,7 +745,7 @@
             
             <div class="stat-grid">
                 <div class="stat-box">
-                    <div class="stat-number">4,55 млн</div>
+                    <div class="stat-number">2,4 млн</div>
                     <div class="stat-label">Команда</div>
                 </div>
                 <div class="stat-box">
@@ -966,12 +759,12 @@
             </div>
             
             <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 16px; margin-top: 2rem;">
-                <h2 style="color: var(--gold); margin: 0 0 0.5rem 0; font-size: clamp(2rem, 8vw, 3rem);">19,55 млн ₽</h2>
+                <h2 style="color: var(--gold); margin: 0 0 0.5rem 0; font-size: clamp(2rem, 8vw, 3rem);">17,4 млн ₽</h2>
                 <p style="font-size: 1.1rem; font-weight: 600;">ОБЩАЯ ЭКОНОМИЯ ЗА 3 ГОДА</p>
             </div>
             
             <p style="margin-top: 1.5rem; font-size: 1rem; opacity: 0.9;">
-                Это <strong>55% от выручки</strong> проекта (36 млн ₽)!
+                Это <strong>48% от выручки</strong> проекта (36 млн ₽)!
             </p>
         </div>
     </section>
@@ -979,16 +772,15 @@
     <footer>
         <div class="container">
             <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">
-                <strong>Проект готов к запуску!</strong>
+                <strong>Проект готов к запуску в 2026!</strong>
             </p>
             <p style="opacity: 0.8; font-size: 0.9rem;">
-                Дорожная карта • Декабрь 2024 • 36 месяцев
+                Дорожная карта • Декабрь 2025 • Реализация 2026-2028
             </p>
         </div>
     </footer>
 
     <script>
-        // Mobile navigation toggle
         function toggleNav() {
             const navMenu = document.getElementById('navMenu');
             const navToggle = document.querySelector('.nav-toggle');
@@ -1003,17 +795,13 @@
             navToggle.classList.remove('active');
         }
         
-        // Close nav when clicking outside
         document.addEventListener('click', function(event) {
             const nav = document.querySelector('nav');
-            const navToggle = document.querySelector('.nav-toggle');
-            
             if (!nav.contains(event.target)) {
                 closeNav();
             }
         });
         
-        // Smooth scroll with offset for sticky nav
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1021,10 +809,7 @@
                 if (target) {
                     const offset = 60;
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
             });
         });
