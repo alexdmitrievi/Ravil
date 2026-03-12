@@ -33,10 +33,22 @@
       line-height: 1.58;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
-      scroll-snap-type: y proximity;
+      overflow: hidden;
     }
 
-    main { position: relative; }
+    .presentation {
+      position: relative;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      overscroll-behavior-y: contain;
+    }
+
+    .presentation:focus-visible {
+      outline: none;
+    }
 
     .progress {
       position: fixed;
@@ -58,8 +70,24 @@
       transition: height 220ms ease;
     }
 
+    .slide-counter {
+      position: fixed;
+      right: 1.8rem;
+      bottom: 1.2rem;
+      z-index: 20;
+      font-size: 0.74rem;
+      letter-spacing: 0.09em;
+      color: color-mix(in srgb, var(--graphite) 72%, var(--oak));
+      background: color-mix(in srgb, var(--warm-white) 76%, transparent);
+      border: 1px solid color-mix(in srgb, var(--steel) 72%, transparent);
+      padding: 0.3rem 0.45rem;
+      min-width: 4.4rem;
+      text-align: center;
+      pointer-events: none;
+    }
+
     .slide {
-      min-height: clamp(42rem, 88vh, 64rem);
+      min-height: 100vh;
       scroll-snap-align: start;
       border-top: 1px solid var(--line);
       padding: var(--pad-y) var(--pad-x);
@@ -373,12 +401,19 @@
       html, body {
         background: var(--warm-white);
         color: var(--graphite);
-        scroll-snap-type: none;
+        overflow: visible;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
 
-      .progress { display: none !important; }
+      .presentation {
+        height: auto;
+        overflow: visible;
+        scroll-snap-type: none;
+      }
+
+      .progress,
+      .slide-counter { display: none !important; }
 
       .reveal,
       .reveal.in {
@@ -646,6 +681,13 @@
 
     @media (max-width: 1120px) {
       .progress { display: none; }
+      .slide-counter { display: none; }
+      body { overflow: auto; }
+      .presentation {
+        height: auto;
+        scroll-snap-type: y proximity;
+        overscroll-behavior-y: auto;
+      }
       .slide,
       .clients,
       .split,
@@ -677,7 +719,7 @@
     }
 
     @media (max-width: 760px) {
-      body { scroll-snap-type: y proximity; }
+      body { overflow: auto; }
 
       .slide {
         min-height: auto;
@@ -748,8 +790,9 @@
 </head>
 <body>
   <div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
+  <div class="slide-counter" id="slideCounter" aria-hidden="true">01 / 12</div>
 
-  <main>
+  <main class="presentation" id="presentation" tabindex="-1">
     <section class="slide cover print-page print-keep-together reveal" aria-label="Обложка презентации A · СТРА">
       <figure class="hero-media" style="margin:0;">
         <img src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage в интерьере" fetchpriority="high" />
@@ -800,7 +843,7 @@
         <div class="kicker">Объект 02</div>
         <h3>Кресло Heritage Classic (statement версия)</h3>
         <p class="material">Натуральная кожа, массив дерева, латунные гвозди.</p>
-        <p class="note">Узнаваемый силуэт, в котором декоративность подчинена форме, масштабу и роли предмета в постранстве.</p>
+        <p class="note">Узнаваемый силуэт, в котором декоративность подчинена форме, масштабу и роли предмета в пространстве.</p>
       </div>
       <figure class="media-wrap media-wrap--portrait visual" style="margin:0;">
         <img class="media" src="https://i.imgur.com/1e0cuHA.jpeg" alt="Кресло Heritage Classic statement версия в вертикальной композиции" loading="lazy" />
@@ -873,7 +916,7 @@
           <div>
             <div class="kicker">Метод</div>
             <h2>Принципы работы</h2>
-            <p class="principles-intro">Каждый проект рассматриваем как часть архитектурного контекста и выстраиваем предмет через пропорции, материал и сценарий использования.</p>
+            <p class="principles-intro">Каждый проект рассматриваем как часть архитектурного контекста и выстраиваем премет через пропорции, материал и сценарий использования.</p>
           </div>
           <ul class="principles-list">
             <li>Работаем в контексте архитектуры пространства и масштаба помещения.</li>
@@ -900,31 +943,104 @@
   </main>
 
   <script>
-    const sections = [...document.querySelectorAll('.reveal')];
+    const presentation = document.getElementById('presentation');
+    const slides = [...document.querySelectorAll('.slide')];
+    const revealItems = [...document.querySelectorAll('.reveal')];
     const progressFill = document.getElementById('progressFill');
+    const slideCounter = document.getElementById('slideCounter');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const totalSlides = slides.length;
+    let activeSlide = 0;
+
+    const pad = (value) => String(value).padStart(2, '0');
+
+    const scrollToSlide = (index) => {
+      if (!presentation || !slides.length) return;
+      const target = Math.max(0, Math.min(totalSlides - 1, index));
+      slides[target].scrollIntoView({
+        behavior: reduceMotion ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    };
+
+    const updatePresentationState = () => {
+      if (!presentation) return;
+      const scrollTop = presentation.scrollTop;
+      const scrollRange = presentation.scrollHeight - presentation.clientHeight;
+      const ratio = scrollRange > 0 ? Math.min(1, Math.max(0, scrollTop / scrollRange)) : 0;
+      if (progressFill) progressFill.style.height = `${ratio * 100}%`;
+
+      let nearestIndex = 0;
+      let nearestDistance = Infinity;
+
+      slides.forEach((slide, index) => {
+        const distance = Math.abs(slide.offsetTop - scrollTop);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = index;
+        }
+      });
+
+      activeSlide = nearestIndex;
+
+      if (slideCounter) {
+        slideCounter.textContent = `${pad(activeSlide + 1)} / ${pad(totalSlides)}`;
+      }
+    };
 
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) entry.target.classList.add('in');
         });
-      }, { threshold: 0.22 });
+      }, { threshold: 0.22, root: presentation || null });
 
-      sections.forEach((section) => observer.observe(section));
+      revealItems.forEach((item) => observer.observe(item));
     } else {
-      sections.forEach((section) => section.classList.add('in'));
+      revealItems.forEach((item) => item.classList.add('in'));
     }
 
-    const updateProgress = () => {
-      const scrollTop = window.scrollY;
-      const scrollRange = document.documentElement.scrollHeight - window.innerHeight;
-      const ratio = scrollRange > 0 ? Math.min(1, Math.max(0, scrollTop / scrollRange)) : 0;
-      progressFill.style.height = `${ratio * 100}%`;
-    };
+    if (presentation) {
+      presentation.addEventListener('scroll', updatePresentationState, { passive: true });
+      window.addEventListener('resize', updatePresentationState);
+      updatePresentationState();
 
-    updateProgress();
-    window.addEventListener('scroll', updateProgress, { passive: true });
-    window.addEventListener('resize', updateProgress);
+      let touchStartY = null;
+      presentation.addEventListener('touchstart', (event) => {
+        touchStartY = event.changedTouches[0].clientY;
+      }, { passive: true });
+
+      presentation.addEventListener('touchend', (event) => {
+        if (touchStartY === null) return;
+        const deltaY = event.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(deltaY) > 54) {
+          if (deltaY < 0) scrollToSlide(activeSlide + 1);
+          else scrollToSlide(activeSlide - 1);
+        }
+        touchStartY = null;
+      }, { passive: true });
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (!presentation || window.matchMedia('print').matches) return;
+      const tag = document.activeElement?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return;
+
+      const key = event.key;
+      if (['ArrowRight', 'ArrowDown', 'PageDown', 'ArrowLeft', 'ArrowUp', 'PageUp', 'Home', 'End', ' '].includes(key)) {
+        event.preventDefault();
+      }
+
+      if (key === 'ArrowRight' || key === 'ArrowDown' || key === 'PageDown' || (key === ' ' && !event.shiftKey)) {
+        scrollToSlide(activeSlide + 1);
+      } else if (key === 'ArrowLeft' || key === 'ArrowUp' || key === 'PageUp' || (key === ' ' && event.shiftKey)) {
+        scrollToSlide(activeSlide - 1);
+      } else if (key === 'Home') {
+        scrollToSlide(0);
+      } else if (key === 'End') {
+        scrollToSlide(totalSlides - 1);
+      }
+    });
   </script>
 </body>
 </html>
