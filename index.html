@@ -462,15 +462,40 @@
         gap: 5mm;
       }
 
+      .split,
+      .split.alt {
+        display: block;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .split > .copy,
+      .split > .visual,
+      .split.alt > .copy,
+      .split.alt > .visual {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .split > .copy,
+      .split.alt > .copy {
+        margin-bottom: 2.4mm;
+      }
+
       .split.alt .copy,
       .split.alt .visual {
         order: initial;
       }
 
+      .split h3 {
+        font-size: 16.8pt;
+        line-height: 1.12;
+      }
+
       .copy {
         align-content: start;
         padding-bottom: 0;
-        gap: 2.6mm;
+        gap: 2.2mm;
       }
 
       .kicker {
@@ -510,10 +535,10 @@
         padding: 0;
       }
 
-      .media-wrap--portrait .media { max-height: 122mm; }
-      .media-wrap--wide .media { max-height: 108mm; }
+      .media-wrap--portrait .media { max-height: 116mm; }
+      .media-wrap--wide .media { max-height: 104mm; }
       .media-wrap--bed .media,
-      .media-wrap--chair .media { max-height: 112mm; }
+      .media-wrap--chair .media { max-height: 108mm; }
 
       .principles {
         align-items: start;
@@ -774,8 +799,8 @@
       <div class="copy">
         <div class="kicker">Объект 02</div>
         <h3>Кресло Heritage Classic (statement версия)</h3>
-        <p class="material">Натуральная кожа, массив дерева, атунные гвозди.</p>
-        <p class="note">Узнаваемый силуэт, в котором декоративность подчинена форме, масштабу и роли предмета в пространстве.</p>
+        <p class="material">Натуральная кожа, массив дерева, латунные гвозди.</p>
+        <p class="note">Узнаваемый силуэт, в котором декоративность подчинена форме, масштабу и роли предмета в постранстве.</p>
       </div>
       <figure class="media-wrap media-wrap--portrait visual" style="margin:0;">
         <img class="media" src="https://i.imgur.com/1e0cuHA.jpeg" alt="Кресло Heritage Classic statement версия в вертикальной композиции" loading="lazy" />
