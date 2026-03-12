@@ -1,102 +1,680 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="ru">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>АСТРА — мебель для ресторанов и гостиниц</title>
-  <style type="text/css">
-    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
-    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; }
-    body { margin: 0; padding: 0; width: 100% !important; height: 100% !important; background: #f6f6f6; }
-    @media only screen and (max-width: 620px) {
-      .container { width: 100% !important; }
-      .px { padding-left: 20px !important; padding-right: 20px !important; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A · СТРА — мастерская авторской мебели для архитектурных интерьеров." />
+  <title>A · СТРА — мастерская авторской мебели</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --graphite: #2c2c2c;
+      --stone: #e8e4dc;
+      --linen: #f2f0eb;
+      --warm-white: #fafaf8;
+      --walnut: #6b5d4d;
+      --oak: #9c8b75;
+      --steel: #d4d0c8;
+      --container: min(1180px, calc(100% - 4rem));
+      --space-1: 0.5rem;
+      --space-2: 1rem;
+      --space-3: 1.5rem;
+      --space-4: 2rem;
+      --space-5: 3rem;
+      --space-6: 4.5rem;
+      --space-7: 7rem;
+      --radius: 0.15rem;
+      --header-height: 5rem;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--graphite);
+      background: var(--warm-white);
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; width: 100%; height: auto; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 200ms ease;
+    }
+
+    a:hover { opacity: 0.72; }
+
+    .container {
+      width: var(--container);
+      margin-inline: auto;
+    }
+
+    .section {
+      padding-block: var(--space-7);
+      border-top: 1px solid color-mix(in srgb, var(--steel) 70%, transparent);
+    }
+
+    .section-title {
+      font-family: "EB Garamond", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2rem, 3vw, 2.9rem);
+      line-height: 1.12;
+      margin: 0 0 var(--space-3);
+      letter-spacing: 0.01em;
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      color: color-mix(in srgb, var(--graphite) 72%, var(--oak));
+      text-transform: none;
+      margin-bottom: var(--space-2);
+    }
+
+    .brand {
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: 1.55rem;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--warm-white) 82%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--steel) 70%, transparent);
+    }
+
+    .header-bar {
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      gap: var(--space-3);
+      font-size: 0.95rem;
+    }
+
+    .btn,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.9rem;
+      padding: 0.6rem 1.25rem;
+      border: 1px solid transparent;
+      font-size: 0.92rem;
+      letter-spacing: 0.01em;
+      transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, opacity 220ms ease;
+      white-space: nowrap;
+    }
+
+    .btn {
+      background: var(--graphite);
+      color: var(--warm-white);
+      border-color: var(--graphite);
+    }
+
+    .btn:hover { opacity: 1; background: color-mix(in srgb, var(--graphite) 88%, var(--oak)); }
+
+    .btn-secondary {
+      border-color: color-mix(in srgb, var(--warm-white) 40%, var(--graphite));
+      color: var(--warm-white);
+      background: color-mix(in srgb, var(--graphite) 25%, transparent);
+    }
+
+    .btn-secondary:hover {
+      opacity: 1;
+      background: color-mix(in srgb, var(--graphite) 35%, transparent);
+    }
+
+    .menu-button {
+      display: none;
+      border: 1px solid var(--steel);
+      background: transparent;
+      color: var(--graphite);
+      font-size: 0.9rem;
+      padding: 0.45rem 0.75rem;
+      min-height: 2.4rem;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: calc(100vh - var(--header-height));
+      display: grid;
+      align-items: end;
+      position: relative;
+      isolation: isolate;
+      background: var(--linen);
+    }
+
+    .hero img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        color-mix(in srgb, var(--graphite) 50%, transparent) 0%,
+        color-mix(in srgb, var(--graphite) 8%, transparent) 48%,
+        transparent 100%
+      );
+      z-index: -1;
+    }
+
+    .hero-content {
+      padding: min(10vh, 8rem) 0 var(--space-7);
+      color: var(--warm-white);
+      max-width: 54rem;
+    }
+
+    .hero h1 {
+      font-family: "EB Garamond", Georgia, serif;
+      font-size: clamp(2.15rem, 5.3vw, 4.8rem);
+      line-height: 1.02;
+      margin: var(--space-2) 0 var(--space-3);
+      font-weight: 500;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 42rem;
+      font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+      color: color-mix(in srgb, var(--warm-white) 90%, var(--steel));
+    }
+
+    .hero-actions {
+      margin-top: var(--space-4);
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .positioning {
+      background: var(--linen);
+    }
+
+    .positioning-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--space-6);
+      align-items: end;
+    }
+
+    .positioning p {
+      margin: 0;
+      font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+      max-width: 40rem;
+    }
+
+    .line-block {
+      min-height: 11rem;
+      border-left: 1px solid var(--oak);
+      border-bottom: 1px solid var(--oak);
+      opacity: 0.62;
+    }
+
+    .clients figure,
+    .portfolio figure {
+      margin: 0;
+    }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: var(--space-5);
+      align-items: center;
+    }
+
+    .clients .support {
+      margin: var(--space-2) 0 0;
+      max-width: 32rem;
+      color: color-mix(in srgb, var(--graphite) 82%, var(--oak));
+    }
+
+    .clients img {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border: 1px solid color-mix(in srgb, var(--steel) 75%, transparent);
+    }
+
+    .portfolio-track {
+      display: grid;
+      gap: var(--space-7);
+      margin-top: var(--space-5);
+    }
+
+    .work {
+      display: grid;
+      gap: var(--space-4);
+      align-items: end;
+    }
+
+    .work.feature {
+      grid-template-columns: 1.45fr 0.9fr;
+    }
+
+    .work.split {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .work.reverse .work-media { order: 2; }
+    .work.reverse .work-copy { order: 1; }
+
+    .work-media img,
+    .placeholder {
+      width: 100%;
+      min-height: 24rem;
+      object-fit: cover;
+      border: 1px solid color-mix(in srgb, var(--steel) 75%, transparent);
+      background: var(--stone);
+    }
+
+    .placeholder {
+      display: grid;
+      align-content: end;
+      padding: var(--space-3);
+      color: color-mix(in srgb, var(--graphite) 85%, var(--oak));
+      font-size: 0.95rem;
+    }
+
+    .work h3 {
+      font-family: "EB Garamond", Georgia, serif;
+      margin: 0 0 0.65rem;
+      font-weight: 500;
+      font-size: clamp(1.65rem, 2.2vw, 2.25rem);
+      line-height: 1.15;
+    }
+
+    .material {
+      margin: 0;
+      font-size: 0.97rem;
+      color: color-mix(in srgb, var(--graphite) 84%, var(--oak));
+    }
+
+    .principles-list {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border-top: 1px solid color-mix(in srgb, var(--steel) 75%, transparent);
+      margin-top: var(--space-4);
+    }
+
+    .principles-list li {
+      list-style: none;
+      margin: 0;
+      padding: var(--space-3) var(--space-2) var(--space-3) 0;
+      border-right: 1px solid color-mix(in srgb, var(--steel) 75%, transparent);
+      font-size: 0.98rem;
+    }
+
+    .principles-list li:last-child { border-right: 0; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    .contact-details {
+      border-top: 1px solid color-mix(in srgb, var(--steel) 75%, transparent);
+      padding-top: var(--space-3);
+      display: grid;
+      gap: 0.8rem;
+      font-size: 0.96rem;
+      max-width: 22rem;
+    }
+
+    .contact-details span {
+      display: inline-block;
+      min-width: 6.8rem;
+      color: color-mix(in srgb, var(--graphite) 74%, var(--oak));
+    }
+
+    footer {
+      border-top: 1px solid color-mix(in srgb, var(--steel) 70%, transparent);
+      padding: var(--space-4) 0;
+      background: var(--linen);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-2);
+      align-items: baseline;
+      font-size: 0.9rem;
+      color: color-mix(in srgb, var(--graphite) 82%, var(--oak));
+    }
+
+    @media (max-width: 1080px) {
+      :root {
+        --space-7: 5.2rem;
+        --space-6: 3.2rem;
+      }
+
+      .principles-list {
+        grid-template-columns: 1fr;
+        border-top: 0;
+      }
+
+      .principles-list li {
+        border-right: 0;
+        border-top: 1px solid color-mix(in srgb, var(--steel) 75%, transparent);
+        padding-right: 0;
+      }
+    }
+
+    @media (max-width: 900px) {
+      :root { --container: min(1180px, calc(100% - 2.2rem)); }
+
+      .menu-button { display: inline-flex; align-items: center; }
+
+      .nav-wrap {
+        position: absolute;
+        top: calc(100% + 0.2rem);
+        right: 1.1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-3);
+        padding: var(--space-3);
+        background: var(--warm-white);
+        border: 1px solid color-mix(in srgb, var(--steel) 75%, transparent);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-0.3rem);
+        transition: opacity 220ms ease, transform 220ms ease;
+        min-width: 16rem;
+      }
+
+      .nav-wrap.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .header-cta { width: 100%; }
+
+      .positioning-grid,
+      .clients-grid,
+      .work.feature,
+      .work.split,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .line-block { min-height: 5rem; }
+
+      .work-media img,
+      .placeholder {
+        min-height: 19rem;
+      }
+
+      .work.reverse .work-media,
+      .work.reverse .work-copy {
+        order: initial;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root {
+        --header-height: 4.45rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .hero-actions .btn,
+      .hero-actions .btn-secondary,
+      .header-cta {
+        width: 100%;
+      }
+
+      .brand { font-size: 1.35rem; }
     }
   </style>
 </head>
-<body style="margin:0; padding:0; background:#f6f6f6; font-family:Arial, Helvetica, sans-serif; color:#222222;">
-  <div style="display:none; max-height:0; overflow:hidden; opacity:0; font-size:1px; line-height:1px; color:#f6f6f6;">
-    Производим мягкую мебель для HoReCa. Если актуально — просто ответьте на это письмо.
-  </div>
+<body>
+  <header>
+    <div class="container header-bar">
+      <a href="#top" class="brand" aria-label="A · СТРА">A · СТРА</a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="navWrap">Меню</button>
+      <div class="nav-wrap" id="navWrap">
+        <nav aria-label="Основная навигация">
+          <ul>
+            <li><a href="#portfolio">Портфолио</a></li>
+            <li><a href="#clients">Клиенты</a></li>
+            <li><a href="#principles">Принципы</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+          </ul>
+        </nav>
+        <a class="btn header-cta" href="#contacts">Обсудить проект</a>
+      </div>
+    </div>
+  </header>
 
-  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#f6f6f6;">
-    <tr>
-      <td align="center" style="padding:20px 12px;">
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <img src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло в классическом интерьере" fetchpriority="high" />
+      <div class="container hero-content">
+        <div class="eyebrow">A · СТРА</div>
+        <h1 id="hero-title">Мебель, которая становится часью архитектуры пространства</h1>
+        <p>Авторская мебель для частных интерьеров, архитекторов и дизайнеров. Проектируем, создаём, устанавливаем.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#contacts">Обсудить проект</a>
+          <a class="btn-secondary" href="#portfolio">Смотреть изделия</a>
+        </div>
+      </div>
+    </section>
 
-        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" class="container" style="width:600px; max-width:600px; background:#ffffff; border:1px solid #e7e7e7;">
-          <tr>
-            <td class="px" style="padding:24px 32px 16px 32px;">
-              <p style="margin:0; font-size:22px; line-height:28px; font-weight:700; color:#1f1f1f;">АСТРА</p>
-              <p style="margin:6px 0 0 0; font-size:13px; line-height:20px; color:#666666;">Производство мягкой мебели для ресторанов, гостиниц и коммерческих пространств</p>
-            </td>
-          </tr>
+    <section class="section positioning" aria-labelledby="positioning-title">
+      <div class="container positioning-grid">
+        <div>
+          <div class="eyebrow">Позиционирование</div>
+          <h2 class="section-title" id="positioning-title">Мастерская, где предмет проектируется как часть интерьера</h2>
+          <p>A · СТРА — мастерская авторской мебели для архитектурных интерьеров. Мы проектируем и создаём предметы, которые становятся частью пространства: точные в пропорциях, честные в материале, выполненные вручную для конкретного проекта.</p>
+        </div>
+        <div class="line-block" aria-hidden="true"></div>
+      </div>
+    </section>
 
-          <tr>
-            <td class="px" style="padding:0 32px;">
-              <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0">
-                <tr><td style="height:1px; font-size:1px; line-height:1px; background:#efefef;">&nbsp;</td></tr>
-              </table>
-            </td>
-          </tr>
+    <section class="section clients" id="clients" aria-labelledby="clients-title">
+      <div class="container clients-grid">
+        <div>
+          <div class="eyebrow">Клиенты</div>
+          <h2 class="section-title" id="clients-title">Нам доверяют</h2>
+          <p class="support">Среди наших заказчиков — частные клиенты, общественные пространства и проекты, где важны характер, масштаб и долговечность решения.</p>
+        </div>
+        <figure>
+          <img src="https://i.postimg.cc/52JwjWCL/Chat-GPT-Image-14-fevr-2026-g-20-06-34.png" alt="Интерьерные проекты клиентов мастерской A · СТРА" loading="lazy" />
+        </figure>
+      </div>
+    </section>
 
-          <tr>
-            <td class="px" style="padding:20px 32px 8px 32px;">
-              <p style="margin:0 0 14px 0; font-size:15px; line-height:24px;">Здравствуйте.</p>
-              <p style="margin:0 0 14px 0; font-size:15px; line-height:24px;">Меня зовут Равиль Садыков, я основатель мастерской «АСТРА». Мы изготавливаем мягкую мебель под проект: диваны, кресла, банкетки и встроенные решения для залов с высокой проходимостью.</p>
-              <p style="margin:0 0 14px 0; font-size:15px; line-height:24px;">Работаем по вашему ТЗ или чертежам дизайнера. Подбираем коммерческие ткани, учитываем сроки запуска объекта и особенности эксплуатации.</p>
-            </td>
-          </tr>
+    <section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="container">
+        <div class="eyebrow">Портфолио</div>
+        <h2 class="section-title" id="portfolio-title">Изделия, созданные для конкретного контекста</h2>
 
-          <tr>
-            <td class="px" style="padding:6px 32px 8px 32px;">
-              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#fafafa; border:1px solid #ececec;">
-                <tr>
-                  <td style="padding:14px 16px;">
-                    <p style="margin:0 0 8px 0; font-size:14px; line-height:22px; font-weight:700; color:#1f1f1f;">Коротко о формате работы:</p>
-                    <p style="margin:0 0 6px 0; font-size:14px; line-height:22px; color:#333333;">• Нестандартные размеры и формы.</p>
-                    <p style="margin:0 0 6px 0; font-size:14px; line-height:22px; color:#333333;">• Материалы для коммерческой эксплуатации.</p>
-                    <p style="margin:0; font-size:14px; line-height:22px; color:#333333;">• Производство без посредников.</p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+        <div class="portfolio-track">
+          <article class="work feature">
+            <figure class="work-media">
+              <img src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage" loading="lazy" />
+            </figure>
+            <div class="work-copy">
+              <h3>Резное кожаное кресло Heritage</h3>
+              <p class="material">Натуральная кожа, массив дерева, латунные гвозди</p>
+            </div>
+          </article>
 
-          <tr>
-            <td class="px" style="padding:16px 32px 8px 32px;">
-              <p style="margin:0 0 14px 0; font-size:15px; line-height:24px;">Если вам актуален подбор мебели для текущих или будущих проектов, просто ответьте на это письмо — отправлю примеры работ и ориентир по срокам и стоимости под ваш запрос.</p>
-              <p style="margin:0; font-size:15px; line-height:24px;">С уважением,<br><strong>Равиль Садыков</strong></p>
-            </td>
-          </tr>
+          <article class="work feature reverse">
+            <figure class="work-media">
+              <img src="https://i.imgur.com/1e0cuHA.jpeg" alt="Кресло Heritage Classic statement версия" loading="lazy" />
+            </figure>
+            <div class="work-copy">
+              <h3>Кресло Heritage Classic (statement версия)</h3>
+              <p class="material">Натуральная кожа, массив дерева, латунные гвозди</p>
+            </div>
+          </article>
 
-          <tr>
-            <td class="px" style="padding:16px 32px 24px 32px;">
-              <p style="margin:0; font-size:13px; line-height:22px; color:#555555;">
-                Мебельная мастерская «АСТРА»<br>
-                Email: <a href="mailto:mebel@a-stra.ru" style="color:#2c2c2c; text-decoration:underline;">mebel@a-stra.ru</a><br>
-                Телефон: <a href="tel:+79136263444" style="color:#2c2c2c; text-decoration:underline;">+7 913 626-34-44</a><br>
-                Telegram: <a href="https://t.me/R2D2_55" style="color:#2c2c2c; text-decoration:underline;">@R2D2_55</a>
-              </p>
-            </td>
-          </tr>
-        </table>
+          <article class="work split">
+            <figure class="work-media">
+              <img src="https://i.imgur.com/Pg5dZUH.png" alt="Угловой диван представительского класса" loading="lazy" />
+            </figure>
+            <div class="work-copy">
+              <h3>Угловой диван представительского класса</h3>
+              <p class="material">Натуральная кожа, массив дерева</p>
+            </div>
+          </article>
 
-        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" class="container" style="width:600px; max-width:600px;">
-          <tr>
-            <td style="padding:14px 22px 8px 22px; text-align:center;">
-              <p style="margin:0; font-size:11px; line-height:18px; color:#8b8b8b;">
-                Вы получили это письмо, потому что ранее оставляли запрос по мебели для коммерческого объекта
-                или ваши контакты находятся в открытых источниках для B2B-связи.<br>
-                Если письма неактуальны, можно <a href="{{unsubscribe_link}}" style="color:#7a7a7a; text-decoration:underline;">отписаться в один клик</a>.
-              </p>
-            </td>
-          </tr>
-        </table>
+          <article class="work split reverse">
+            <figure class="work-media">
+              <img src="https://i.postimg.cc/cJSQh23G/1c51eec6e84c002d0d9310cb10b26ec0-1770243052.png" alt="Кресло Heritage на колесной базе" loading="lazy" />
+            </figure>
+            <div class="work-copy">
+              <h3>Кресло Heritage на колесной базе</h3>
+              <p class="material">Натуральная кожа, массив дерева, металлическая крестовина</p>
+            </div>
+          </article>
 
-      </td>
-    </tr>
-  </table>
+          <article class="work feature">
+            <figure class="work-media">
+              <img src="https://i.postimg.cc/k41M1Y0N/720490c15029dad280131423b2d53b27-1770732955.png" alt="Кровать с мягким архитектурным изголовьем" loading="lazy" />
+            </figure>
+            <div class="work-copy">
+              <h3>Кровать с мягким архитектурным изголовьем</h3>
+              <p class="material">Велюр, МДФ, металл</p>
+            </div>
+          </article>
+
+          <article class="work split reverse">
+            <figure class="work-media">
+              <div class="placeholder" role="img" aria-label="Заполнитель для изображения современной кровати с вертикальной прострочкой">
+                <p style="margin:0;">Изображение временно недоступно по текущей ссылке:<br />https://postimg.cc/VS1R3sDv</p>
+              </div>
+            </figure>
+            <div class="work-copy">
+              <h3>Современная кровать с вертикальной прострочкой</h3>
+              <p class="material">Текстиль, массив дерева</p>
+            </div>
+          </article>
+
+          <article class="work feature">
+            <figure class="work-media">
+              <img src="https://i.postimg.cc/k55tTbsm/d29350da0f0e5772c0e15acbc1dae661-1770245979.png" alt="Диван для переговорной зоны" loading="lazy" />
+            </figure>
+            <div class="work-copy">
+              <h3>Диван для переговорной зоны</h3>
+              <p class="material">Натуральная кожа, металл</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="principles" aria-labelledby="principles-title">
+      <div class="container">
+        <div class="eyebrow">Подход</div>
+        <h2 class="section-title" id="principles-title">Принципы работы</h2>
+        <ul class="principles-list">
+          <li>Работаем в контексте архитектуры пространства</li>
+          <li>Проектируем под конкретный интерьер</li>
+          <li>Используем материалы, которые стареют достойно</li>
+          <li>Изготавливаем вручную</li>
+          <li>Сопровождаем проект до установки</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="contacts" aria-labelledby="contacts-title">
+      <div class="container contact-grid">
+        <div>
+          <div class="eyebrow">A · СТРА</div>
+          <h2 class="section-title" id="contacts-title">Обсудить проект</h2>
+          <p>Если вы подбираете предмет для частного интерьера, кабинета или общественного пространства, обсудим задачу в контексте архитектуры и материалов.</p>
+          <div class="contact-details">
+            <div><span>Телефон</span> +7 (000) 000-00-00</div>
+            <div><span>Email</span> hello@astra.ru</div>
+            <div><span>Город / мастерская</span> Омск</div>
+          </div>
+        </div>
+        <div>
+          <a class="btn" href="mailto:hello@astra.ru">Связаться</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="brand" style="font-size:1.25rem;">A · СТРА</div>
+      <div>Авторская мебель для архитектурных интерьеров</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-button');
+    const navWrap = document.getElementById('navWrap');
+
+    if (menuButton && navWrap) {
+      menuButton.addEventListener('click', () => {
+        const isOpen = navWrap.classList.toggle('open');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      navWrap.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navWrap.classList.remove('open');
+          menuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  </script>
 </body>
 </html>
