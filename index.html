@@ -331,31 +331,61 @@
     }
 
     @media (min-width: 1121px) {
-      .slide-fix-heritage {
-        grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.72fr);
+      .slide--heritage-classic {
+        grid-template-columns: minmax(0, 1.34fr) minmax(0, 0.66fr);
       }
 
-      .slide-fix-heritage .media-wrap--portrait {
-        --media-height: min(82vh, 920px);
-        --media-pad: clamp(0.45rem, 1.4vw, 0.9rem);
+      .slide--heritage-classic .media-wrap--portrait {
+        height: auto;
+        min-height: min(84vh, 940px);
+        --media-height: auto;
+        --media-pad: clamp(0.5rem, 1.5vw, 0.95rem);
       }
 
-      .slide-fix-sofa {
+      .slide--heritage-classic .media-wrap--portrait .media {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+        object-position: center center;
+      }
+
+      .slide--sofa-wide {
+        grid-template-columns: minmax(0, 1.38fr) minmax(0, 0.62fr);
+      }
+
+      .slide--sofa-wide .media-wrap--wide {
+        height: auto;
+        min-height: min(72vh, 770px);
+        --media-height: auto;
+        --media-pad: clamp(0.35rem, 1.15vw, 0.75rem);
+      }
+
+      .slide--sofa-wide .media-wrap--wide .media {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+        object-position: center center;
+      }
+
+      .slide--bed-soft {
         grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
       }
 
-      .slide-fix-sofa .media-wrap--wide {
-        --media-height: min(72vh, 760px);
-        --media-pad: clamp(0.35rem, 1.2vw, 0.75rem);
+      .slide--bed-soft .media-wrap--bed {
+        height: auto;
+        min-height: min(74vh, 790px);
+        --media-height: auto;
+        --media-pad: clamp(0.45rem, 1.35vw, 0.88rem);
       }
 
-      .slide-fix-bed1 {
-        grid-template-columns: minmax(0, 1.24fr) minmax(0, 0.76fr);
-      }
-
-      .slide-fix-bed1 .media-wrap--bed {
-        --media-height: min(74vh, 780px);
-        --media-pad: clamp(0.45rem, 1.4vw, 0.9rem);
+      .slide--bed-soft .media-wrap--bed .media {
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+        object-position: center center;
       }
     }
 
@@ -493,7 +523,7 @@
       </div>
     </section>
 
-    <section class="slide split alt slide-fix-heritage reveal" aria-label="Кресло Heritage Classic statement версия">
+    <section class="slide split alt slide--heritage-classic reveal" aria-label="Кресло Heritage Classic statement версия">
       <div class="copy">
         <div class="kicker">Объект 02</div>
         <h3>Кресло Heritage Classic (statement версия)</h3>
@@ -505,7 +535,7 @@
       </figure>
     </section>
 
-    <section class="slide split slide-fix-sofa reveal" aria-label="Угловой диван представительского класса">
+    <section class="slide split slide--sofa-wide reveal" aria-label="Угловой диван представительского класса">
       <figure class="media-wrap media-wrap--wide visual" style="margin:0;">
         <img class="media" src="https://i.imgur.com/Pg5dZUH.png" alt="Угловой диван представительского класса" loading="lazy" />
       </figure>
@@ -529,7 +559,7 @@
       </figure>
     </section>
 
-    <section class="slide split slide-fix-bed1 reveal" aria-label="Кровать с мягким архитектурным изголовьем">
+    <section class="slide split slide--bed-soft reveal" aria-label="Кровать с мягким архитектурным изголовьем">
       <figure class="media-wrap media-wrap--bed visual" style="margin:0;">
         <img class="media" src="https://i.postimg.cc/k41M1Y0N/720490c15029dad280131423b2d53b27-1770732955.png" alt="Кровать с мягким архитектурным изголовьем" loading="lazy" />
       </figure>
