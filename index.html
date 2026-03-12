@@ -380,6 +380,191 @@
       text-decoration-color: color-mix(in srgb, var(--warm-white) 82%, transparent);
     }
 
+    .print-page { }
+    .print-keep-together { }
+    .print-break-before { }
+
+    @page {
+      size: A4 portrait;
+      margin: 15mm 14mm 16mm;
+    }
+
+    @media print {
+      html, body {
+        background: var(--warm-white);
+        color: var(--graphite);
+        scroll-snap-type: none;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .progress { display: none !important; }
+
+      .reveal,
+      .reveal.in {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .slide {
+        min-height: auto !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        padding: 10mm 0 9mm;
+        border-top: 0;
+      }
+
+      .print-page {
+        break-before: page;
+        page-break-before: always;
+      }
+
+      .print-page:first-of-type {
+        break-before: auto;
+        page-break-before: auto;
+      }
+
+      .print-break-before {
+        break-before: page;
+        page-break-before: always;
+      }
+
+      .print-keep-together,
+      .statement-wrap,
+      .copy,
+      .principles-wrap,
+      .closing .frame,
+      .media-wrap {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .cover {
+        min-height: 245mm !important;
+        align-items: end;
+      }
+
+      .cover .hero-media img {
+        object-position: center 40%;
+      }
+
+      .statement {
+        min-height: auto !important;
+        padding-top: 6mm;
+      }
+
+      .statement-wrap {
+        gap: 10mm;
+      }
+
+      .statement-transition {
+        width: min(100%, 110mm);
+        margin-left: 0;
+        padding-top: 6mm;
+      }
+
+      .clients,
+      .split,
+      .split.alt,
+      .principles-layout {
+        grid-template-columns: 1fr;
+        gap: 7mm;
+      }
+
+      .split.alt .copy,
+      .split.alt .visual {
+        order: initial;
+      }
+
+      .copy {
+        align-content: start;
+        padding-bottom: 0;
+        gap: 3.2mm;
+      }
+
+      .kicker {
+        font-size: 8pt;
+        letter-spacing: 0.08em;
+      }
+
+      h1 { font-size: 33pt; }
+      h2 { font-size: 24pt; }
+      h3 { font-size: 18pt; }
+
+      p,
+      .material,
+      .note,
+      .principles-list li,
+      .contacts {
+        font-size: 10.5pt;
+        line-height: 1.45;
+      }
+
+      .media-wrap {
+        --media-height: auto;
+        height: auto;
+        padding: 2.5mm;
+        background: var(--stone);
+      }
+
+      .media {
+        width: 100%;
+        height: auto;
+        max-height: 145mm;
+        object-fit: contain !important;
+        object-position: center center !important;
+        padding: 0;
+      }
+
+      .media-wrap--portrait .media { max-height: 168mm; }
+      .media-wrap--wide .media { max-height: 130mm; }
+      .media-wrap--bed .media,
+      .media-wrap--chair .media { max-height: 138mm; }
+
+      .principles {
+        min-height: auto !important;
+        padding-top: 8mm;
+      }
+
+      .principles-wrap {
+        gap: 6mm;
+      }
+
+      .principles-intro {
+        max-width: 100%;
+      }
+
+      .principles-list {
+        grid-template-columns: 1fr;
+        border-top: 1px solid color-mix(in srgb, var(--oak) 35%, transparent);
+      }
+
+      .principles-list li {
+        border-right: 0;
+        border-bottom: 0;
+        border-top: 1px solid color-mix(in srgb, var(--oak) 32%, transparent);
+        min-height: auto;
+        padding: 2.8mm 0;
+      }
+
+      .principles-list li:first-child { border-top: 0; }
+
+      .closing {
+        min-height: 230mm !important;
+      }
+
+      .closing .frame {
+        width: 100%;
+        gap: 4mm;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+
     @media (min-width: 1121px) {
       .slide--heritage-classic {
         grid-template-columns: minmax(0, 1.34fr) minmax(0, 0.66fr);
@@ -554,7 +739,7 @@
   <div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
 
   <main>
-    <section class="slide cover reveal" aria-label="Обложка презентации A · СТРА">
+    <section class="slide cover print-page print-keep-together reveal" aria-label="Обложка презентации A · СТРА">
       <figure class="hero-media" style="margin:0;">
         <img src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage в интерьере" fetchpriority="high" />
       </figure>
@@ -565,7 +750,7 @@
       </div>
     </section>
 
-    <section class="slide statement reveal" aria-label="Позиционирование мастерской A · СТРА">
+    <section class="slide statement print-page print-keep-together reveal" aria-label="Позиционирование мастерской A · СТРА">
       <div class="statement-wrap">
         <div>
           <div class="kicker">Позиционирование</div>
@@ -580,7 +765,7 @@
       </div>
     </section>
 
-    <section class="slide clients reveal" aria-label="Слайд доверия клиентов">
+    <section class="slide clients print-page print-keep-together reveal" aria-label="Слайд доверия клиентов">
       <div class="copy" style="align-content:center;">
         <div class="kicker">Контекст проектов</div>
         <h2>Нам доверяют</h2>
@@ -591,7 +776,7 @@
       </figure>
     </section>
 
-    <section class="slide split reveal" aria-label="Резное кожаное кресло Heritage">
+    <section class="slide split print-page print-keep-together reveal" aria-label="Резное кожаное кресло Heritage">
       <figure class="media-wrap media-wrap--chair visual" style="margin:0;">
         <img class="media" src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage" loading="lazy" />
       </figure>
@@ -603,7 +788,7 @@
       </div>
     </section>
 
-    <section class="slide split alt slide--heritage-classic reveal" aria-label="Кресло Heritage Classic statement версия">
+    <section class="slide split alt slide--heritage-classic print-page print-keep-together reveal" aria-label="Кресло Heritage Classic statement версия">
       <div class="copy">
         <div class="kicker">Объект 02</div>
         <h3>Кресло Heritage Classic (statement версия)</h3>
@@ -615,7 +800,7 @@
       </figure>
     </section>
 
-    <section class="slide split slide--sofa-wide reveal" aria-label="Угловой диван представительского класса">
+    <section class="slide split slide--sofa-wide print-page print-keep-together reveal" aria-label="Угловой диван представительского класса">
       <figure class="media-wrap media-wrap--wide visual" style="margin:0;">
         <img class="media" src="https://i.imgur.com/Pg5dZUH.png" alt="Угловой диван представительского класса" loading="lazy" />
       </figure>
@@ -627,7 +812,7 @@
       </div>
     </section>
 
-    <section class="slide split alt reveal" aria-label="Кресло Heritage на колесной базе">
+    <section class="slide split alt print-page print-keep-together reveal" aria-label="Кресло Heritage на колесной базе">
       <div class="copy">
         <div class="kicker">Объект 04</div>
         <h3>Кресло Heritage на колесной базе</h3>
@@ -639,7 +824,7 @@
       </figure>
     </section>
 
-    <section class="slide split slide--bed-soft reveal" aria-label="Кровать с мягким архитектурным изголовьем">
+    <section class="slide split slide--bed-soft print-page print-keep-together reveal" aria-label="Кровать с мягким архитектурным изголовьем">
       <figure class="media-wrap media-wrap--bed visual" style="margin:0;">
         <img class="media" src="https://i.postimg.cc/k41M1Y0N/720490c15029dad280131423b2d53b27-1770732955.png" alt="Кровать с мягким архитектурным изголовьем" loading="lazy" />
       </figure>
@@ -651,11 +836,11 @@
       </div>
     </section>
 
-    <section class="slide split alt reveal" aria-label="Современная кровать с вертикальной прострочкой">
+    <section class="slide split alt print-page print-keep-together reveal" aria-label="Современная кровать с вертикальной прострочкой">
       <div class="copy">
         <div class="kicker">Объект 06</div>
         <h3>Современная кровать с вертикальной прострочкой</h3>
-        <p class="material">Текстиль, масив дерева.</p>
+        <p class="material">Текстиль, массив дерева.</p>
         <p class="note">Индивидуальное решение, где пластика формы работает вместе с тишиной материала.</p>
       </div>
       <figure class="media-wrap media-wrap--bed visual" style="margin:0;">
@@ -663,7 +848,7 @@
       </figure>
     </section>
 
-    <section class="slide split reveal" aria-label="Диван для переговорной зоны">
+    <section class="slide split print-page print-keep-together reveal" aria-label="Диван для переговорной зоны">
       <figure class="media-wrap media-wrap--wide visual" style="margin:0;">
         <img class="media" src="https://i.postimg.cc/k55tTbsm/d29350da0f0e5772c0e15acbc1dae661-1770245979.png" alt="Диван для переговорной зоны" loading="lazy" />
       </figure>
@@ -675,13 +860,13 @@
       </div>
     </section>
 
-    <section class="slide principles reveal" aria-label="Принципы работы мастерской A · СТРА">
+    <section class="slide principles print-page print-keep-together reveal" aria-label="Принципы работы мастерской A · СТРА">
       <div class="principles-wrap">
         <div class="principles-layout">
           <div>
             <div class="kicker">Метод</div>
             <h2>Принципы работы</h2>
-            <p class="principles-intro">Каждый проект рассматриваем как часть архитектурного контекста и выстраиваем предмет через пропорции, матерал и сценарий использования.</p>
+            <p class="principles-intro">Каждый проект рассматриваем как часть архитектурного контекста и выстраиваем предмет через пропорции, материал и сценарий использования.</p>
           </div>
           <ul class="principles-list">
             <li>Работаем в контексте архитектуры пространства</li>
@@ -694,7 +879,7 @@
       </div>
     </section>
 
-    <section class="slide closing reveal" aria-label="Финальный слайд контактов A · СТРА">
+    <section class="slide closing print-page print-keep-together reveal" aria-label="Финальный слайд контактов A · СТРА">
       <div class="frame">
         <div class="brand" style="margin-bottom:0;">A · СТРА</div>
         <h2>Обсудить проект</h2>
