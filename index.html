@@ -360,6 +360,9 @@
     .print-page { }
     .print-keep-together { }
     .print-break-before { }
+    .print-avoid-break { }
+    .print-compact { }
+    .print-image-safe { }
 
     @page {
       size: A4 portrait;
@@ -384,20 +387,25 @@
         transition: none !important;
       }
 
-      .slide {
+      * {
+        orphans: 3;
+        widows: 3;
+      }
+
+      .slide,
+      .cover,
+      .statement,
+      .clients,
+      .split,
+      .principles,
+      .closing {
         min-height: auto !important;
-        break-inside: avoid;
-        page-break-inside: avoid;
-        padding: 10mm 0 9mm;
+        height: auto !important;
+        padding: 6mm 0 5mm;
         border-top: 0;
       }
 
       .print-page {
-        break-before: page;
-        page-break-before: always;
-      }
-
-      .print-page:first-of-type {
         break-before: auto;
         page-break-before: auto;
       }
@@ -408,17 +416,17 @@
       }
 
       .print-keep-together,
+      .print-avoid-break,
       .statement-wrap,
       .copy,
       .principles-wrap,
-      .closing .frame,
-      .media-wrap {
+      .closing .frame {
         break-inside: avoid;
         page-break-inside: avoid;
       }
 
       .cover {
-        min-height: 245mm !important;
+        min-height: 258mm !important;
         align-items: end;
       }
 
@@ -427,18 +435,23 @@
       }
 
       .statement {
-        min-height: auto !important;
-        padding-top: 6mm;
+        align-items: start;
       }
 
       .statement-wrap {
-        gap: 10mm;
+        grid-template-columns: 1fr;
+        gap: 4mm;
+      }
+
+      .statement-wrap > div:first-child {
+        break-inside: avoid;
+        page-break-inside: avoid;
       }
 
       .statement-rule {
-        width: min(100%, 82mm);
+        width: min(100%, 60mm);
         margin-left: 0;
-        margin-bottom: 0;
+        margin-bottom: 1mm;
       }
 
       .clients,
@@ -446,7 +459,7 @@
       .split.alt,
       .principles-layout {
         grid-template-columns: 1fr;
-        gap: 7mm;
+        gap: 5mm;
       }
 
       .split.alt .copy,
@@ -457,7 +470,7 @@
       .copy {
         align-content: start;
         padding-bottom: 0;
-        gap: 3.2mm;
+        gap: 2.6mm;
       }
 
       .kicker {
@@ -474,38 +487,41 @@
       .note,
       .principles-list li,
       .contacts {
-        font-size: 10.5pt;
-        line-height: 1.45;
+        font-size: 10.2pt;
+        line-height: 1.4;
       }
 
-      .media-wrap {
+      .media-wrap,
+      .print-image-safe {
         --media-height: auto;
         height: auto;
-        padding: 2.5mm;
+        padding: 2.2mm;
         background: var(--stone);
+        break-inside: avoid;
+        page-break-inside: avoid;
       }
 
       .media {
         width: 100%;
         height: auto;
-        max-height: 145mm;
+        max-height: 116mm;
         object-fit: contain !important;
         object-position: center center !important;
         padding: 0;
       }
 
-      .media-wrap--portrait .media { max-height: 168mm; }
-      .media-wrap--wide .media { max-height: 130mm; }
+      .media-wrap--portrait .media { max-height: 122mm; }
+      .media-wrap--wide .media { max-height: 108mm; }
       .media-wrap--bed .media,
-      .media-wrap--chair .media { max-height: 138mm; }
+      .media-wrap--chair .media { max-height: 112mm; }
 
       .principles {
-        min-height: auto !important;
-        padding-top: 8mm;
+        align-items: start;
+        padding-top: 6mm;
       }
 
       .principles-wrap {
-        gap: 6mm;
+        gap: 4mm;
       }
 
       .principles-intro {
@@ -522,18 +538,19 @@
         border-bottom: 0;
         border-top: 1px solid color-mix(in srgb, var(--oak) 32%, transparent);
         min-height: auto;
-        padding: 2.8mm 0;
+        padding: 2.3mm 0;
       }
 
       .principles-list li:first-child { border-top: 0; }
 
       .closing {
-        min-height: 230mm !important;
+        align-items: start;
+        padding-top: 9mm;
       }
 
       .closing .frame {
         width: 100%;
-        gap: 4mm;
+        gap: 3.2mm;
       }
 
       a {
@@ -741,7 +758,7 @@
       </figure>
     </section>
 
-    <section class="slide split print-page print-keep-together reveal" aria-label="Резное кожаное кресло Heritage">
+    <section class="slide split print-page print-break-before print-keep-together reveal" aria-label="Резное кожаное кресло Heritage">
       <figure class="media-wrap media-wrap--chair visual" style="margin:0;">
         <img class="media" src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage" loading="lazy" />
       </figure>
@@ -757,7 +774,7 @@
       <div class="copy">
         <div class="kicker">Объект 02</div>
         <h3>Кресло Heritage Classic (statement версия)</h3>
-        <p class="material">Натуральная кожа, массив дерева, латунные гвозди.</p>
+        <p class="material">Натуральная кожа, массив дерева, атунные гвозди.</p>
         <p class="note">Узнаваемый силуэт, в котором декоративность подчинена форме, масштабу и роли предмета в пространстве.</p>
       </div>
       <figure class="media-wrap media-wrap--portrait visual" style="margin:0;">
@@ -825,7 +842,7 @@
       </div>
     </section>
 
-    <section class="slide principles print-page print-keep-together reveal" aria-label="Принципы работы мастерской A · СТРА">
+    <section class="slide principles print-page print-break-before print-keep-together reveal" aria-label="Принципы работы мастерской A · СТРА">
       <div class="principles-wrap">
         <div class="principles-layout">
           <div>
@@ -843,7 +860,7 @@
       </div>
     </section>
 
-    <section class="slide closing print-page print-keep-together reveal" aria-label="Финальный слайд контактов A · СТРА">
+    <section class="slide closing print-page print-break-before print-keep-together reveal" aria-label="Финальный слайд контактов A · СТРА">
       <div class="frame">
         <div class="brand" style="margin-bottom:0;">A · СТРА</div>
         <h2>Контакт для нового проекта</h2>
