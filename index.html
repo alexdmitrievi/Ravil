@@ -17,44 +17,37 @@
       --walnut: #6b5d4d;
       --oak: #9c8b75;
       --steel: #d4d0c8;
-
-      --pad-x: clamp(1.2rem, 4vw, 4rem);
+      --line: color-mix(in srgb, var(--steel) 82%, transparent);
+      --pad-x: clamp(1.1rem, 4vw, 4rem);
       --pad-y: clamp(2rem, 6vh, 5rem);
-      --max-text: 42rem;
-      --line: color-mix(in srgb, var(--steel) 80%, transparent);
+      --max-copy: 43rem;
     }
 
     * { box-sizing: border-box; }
-
     html, body { margin: 0; }
 
     body {
       font-family: "Inter", system-ui, -apple-system, sans-serif;
-      color: var(--graphite);
       background: var(--warm-white);
-      line-height: 1.6;
+      color: var(--graphite);
+      line-height: 1.58;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       scroll-snap-type: y proximity;
-    }
-
-    ::selection {
-      background: color-mix(in srgb, var(--oak) 30%, var(--warm-white));
-      color: var(--graphite);
     }
 
     main { position: relative; }
 
     .progress {
       position: fixed;
-      right: 1rem;
       top: 50%;
+      right: 1rem;
       transform: translateY(-50%);
       width: 2px;
       height: min(56vh, 360px);
-      background: color-mix(in srgb, var(--steel) 70%, transparent);
-      z-index: 20;
+      background: color-mix(in srgb, var(--steel) 75%, transparent);
       pointer-events: none;
+      z-index: 20;
     }
 
     .progress span {
@@ -62,72 +55,79 @@
       width: 100%;
       height: 0;
       background: var(--walnut);
-      transition: height 240ms ease;
+      transition: height 220ms ease;
     }
 
     .slide {
       min-height: 100vh;
       scroll-snap-align: start;
-      padding: var(--pad-y) var(--pad-x);
       border-top: 1px solid var(--line);
+      padding: var(--pad-y) var(--pad-x);
       display: grid;
       align-items: center;
-      position: relative;
       overflow: clip;
+      position: relative;
     }
 
     .slide:first-child { border-top: 0; }
 
-    .slide.reveal {
+    .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 700ms ease, transform 700ms ease;
-      transition-delay: 80ms;
+      transform: translateY(20px);
+      transition: opacity 680ms ease, transform 680ms ease;
     }
 
-    .slide.reveal.in {
+    .reveal.in {
       opacity: 1;
       transform: translateY(0);
     }
 
     h1, h2, h3 {
+      margin: 0;
       font-family: "EB Garamond", Georgia, serif;
       font-weight: 500;
       line-height: 1.08;
-      margin: 0;
       letter-spacing: 0.01em;
     }
 
-    h1 { font-size: clamp(2.1rem, 6vw, 5rem); }
-    h2 { font-size: clamp(1.8rem, 4.2vw, 3.4rem); }
-    h3 { font-size: clamp(1.5rem, 2.8vw, 2.4rem); }
+    h1 { font-size: clamp(2.05rem, 5.9vw, 5rem); }
+    h2 { font-size: clamp(1.8rem, 4.1vw, 3.35rem); }
+    h3 { font-size: clamp(1.45rem, 2.8vw, 2.3rem); }
 
     p {
       margin: 0;
-      max-width: var(--max-text);
-      font-size: clamp(0.98rem, 1.2vw, 1.08rem);
-      color: color-mix(in srgb, var(--graphite) 90%, var(--oak));
+      max-width: var(--max-copy);
+      font-size: clamp(0.98rem, 1.1vw, 1.06rem);
+      color: color-mix(in srgb, var(--graphite) 91%, var(--oak));
     }
 
     .kicker {
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.09em;
       color: color-mix(in srgb, var(--graphite) 74%, var(--oak));
-      margin-bottom: 0.85rem;
     }
 
     .brand {
+      margin-bottom: 1rem;
       font-family: "EB Garamond", Georgia, serif;
-      font-size: clamp(1.3rem, 2vw, 1.8rem);
       letter-spacing: 0.05em;
-      margin-bottom: 1.1rem;
+      font-size: clamp(1.32rem, 2vw, 1.75rem);
     }
 
     .cover {
-      color: var(--warm-white);
       background: var(--linen);
+      color: var(--warm-white);
       align-items: end;
       isolation: isolate;
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: color-mix(in srgb, var(--graphite) 33%, transparent);
+      z-index: -1;
     }
 
     .cover img {
@@ -136,72 +136,51 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 45%;
       z-index: -2;
     }
 
-    .cover::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: color-mix(in srgb, var(--graphite) 34%, transparent);
-      z-index: -1;
-    }
-
     .cover .inner {
+      max-width: 55rem;
       display: grid;
-      gap: 1rem;
-      padding-bottom: clamp(1rem, 4vh, 4rem);
-      max-width: 54rem;
+      gap: 0.95rem;
+      padding-bottom: clamp(0.8rem, 3.8vh, 3.5rem);
     }
 
     .cover p { color: color-mix(in srgb, var(--warm-white) 88%, var(--steel)); }
 
     .statement {
-      background: var(--warm-white);
       grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
-      gap: clamp(1.4rem, 6vw, 6rem);
+      gap: clamp(1.2rem, 5vw, 6rem);
+      background: var(--warm-white);
     }
 
-    .statement .rule {
+    .rule {
       align-self: end;
-      min-height: clamp(7rem, 28vh, 16rem);
-      border-left: 1px solid color-mix(in srgb, var(--oak) 60%, transparent);
-      border-bottom: 1px solid color-mix(in srgb, var(--oak) 60%, transparent);
+      min-height: clamp(7rem, 26vh, 15rem);
+      border-left: 1px solid color-mix(in srgb, var(--oak) 55%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--oak) 55%, transparent);
     }
 
-    .clients {
-      background: var(--linen);
-      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-      gap: clamp(1.2rem, 4vw, 4rem);
-    }
-
-    .media {
-      width: 100%;
-      height: min(70vh, 760px);
-      object-fit: cover;
-      border: 1px solid var(--line);
-      background: var(--stone);
-    }
-
-    .object {
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    .split {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
       gap: clamp(1rem, 4vw, 4.5rem);
       background: var(--warm-white);
     }
 
-    .object.alt {
+    .split.alt {
       grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
       background: var(--linen);
     }
 
-    .object.alt .copy { order: 2; }
-    .object.alt .visual { order: 1; }
+    .split.alt .copy { order: 2; }
+    .split.alt .visual { order: 1; }
 
     .copy {
       display: grid;
       align-content: end;
-      gap: 1rem;
-      padding-bottom: clamp(0rem, 2vh, 2rem);
+      gap: 0.95rem;
+      padding-bottom: clamp(0rem, 2.2vh, 1.9rem);
     }
 
     .material {
@@ -211,7 +190,36 @@
 
     .note {
       font-size: 0.98rem;
-      color: color-mix(in srgb, var(--graphite) 86%, var(--oak));
+      color: color-mix(in srgb, var(--graphite) 88%, var(--oak));
+    }
+
+    .media-wrap {
+      border: 1px solid var(--line);
+      background: var(--stone);
+      height: min(70vh, 760px);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .media {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .contain-desktop .media {
+      object-fit: contain;
+      padding: clamp(0.7rem, 2.4vw, 1.5rem);
+      background: color-mix(in srgb, var(--stone) 82%, var(--linen));
+    }
+
+    .clients {
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      background: var(--linen);
+      gap: clamp(1.1rem, 4vw, 4rem);
     }
 
     .principles {
@@ -227,20 +235,20 @@
     }
 
     .principles-list {
+      list-style: none;
       margin: 0;
       padding: 0;
-      list-style: none;
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      border-top: 1px solid color-mix(in srgb, var(--oak) 36%, transparent);
+      border-top: 1px solid color-mix(in srgb, var(--oak) 35%, transparent);
     }
 
     .principles-list li {
       margin: 0;
       padding: 1.2rem 0.85rem 0 0;
-      border-right: 1px solid color-mix(in srgb, var(--oak) 36%, transparent);
+      border-right: 1px solid color-mix(in srgb, var(--oak) 35%, transparent);
+      min-height: 8.7rem;
       font-size: 0.98rem;
-      min-height: 9rem;
       color: color-mix(in srgb, var(--graphite) 90%, var(--oak));
     }
 
@@ -253,72 +261,104 @@
     }
 
     .closing p,
-    .closing a { color: color-mix(in srgb, var(--warm-white) 90%, var(--steel)); }
+    .closing a,
+    .closing span { color: color-mix(in srgb, var(--warm-white) 90%, var(--steel)); }
 
     .closing .frame {
       width: min(860px, 100%);
       display: grid;
-      gap: clamp(1rem, 2.5vh, 2rem);
-      border-top: 1px solid color-mix(in srgb, var(--steel) 35%, transparent);
-      padding-top: clamp(1.5rem, 5vh, 3.2rem);
+      gap: clamp(1rem, 2.4vh, 2rem);
+      border-top: 1px solid color-mix(in srgb, var(--steel) 33%, transparent);
+      padding-top: clamp(1.35rem, 4vh, 3rem);
     }
 
     .contacts {
       display: grid;
       gap: 0.5rem;
-      margin-top: 0.5rem;
-      font-size: 1.03rem;
+      font-size: 1.02rem;
+      margin-top: 0.3rem;
     }
 
     .contacts a {
-      display: inline-block;
-      text-underline-offset: 0.18em;
       text-decoration: underline;
-      text-decoration-color: color-mix(in srgb, var(--steel) 45%, transparent);
-      transition: opacity 200ms ease, text-decoration-color 200ms ease;
+      text-decoration-color: color-mix(in srgb, var(--steel) 44%, transparent);
+      text-underline-offset: 0.18em;
+      transition: opacity 180ms ease, text-decoration-color 180ms ease;
     }
 
     .contacts a:hover {
-      opacity: 0.8;
-      text-decoration-color: color-mix(in srgb, var(--warm-white) 80%, transparent);
+      opacity: 0.82;
+      text-decoration-color: color-mix(in srgb, var(--warm-white) 82%, transparent);
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1120px) {
       .progress { display: none; }
       .slide,
       .statement,
       .clients,
-      .object,
-      .object.alt {
-        grid-template-columns: 1fr;
-      }
-
-      .object.alt .copy,
-      .object.alt .visual {
-        order: initial;
-      }
-
-      .media { height: min(56vh, 560px); }
-
+      .split,
+      .split.alt { grid-template-columns: 1fr; }
+      .split.alt .copy,
+      .split.alt .visual { order: initial; }
+      .media-wrap { height: min(60vh, 560px); }
+      .copy { align-content: start; padding-bottom: 0; }
       .principles-list {
         grid-template-columns: 1fr;
         border-top: 0;
       }
-
       .principles-list li {
         border-right: 0;
-        border-top: 1px solid color-mix(in srgb, var(--oak) 36%, transparent);
+        border-top: 1px solid color-mix(in srgb, var(--oak) 35%, transparent);
         min-height: auto;
-        padding: 0.95rem 0;
+        padding: 0.96rem 0;
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 760px) {
       body { scroll-snap-type: y proximity; }
-      .slide { min-height: auto; padding-block: clamp(2.2rem, 6vh, 3.4rem); }
-      .cover { min-height: 100vh; }
-      .media { height: min(48vh, 400px); }
-      .copy { align-content: start; }
+      .slide {
+        min-height: auto;
+        padding-top: clamp(2.1rem, 6vh, 3.2rem);
+        padding-bottom: clamp(2.1rem, 6vh, 3.2rem);
+      }
+      .cover {
+        min-height: 100vh;
+        align-items: end;
+      }
+      .cover img {
+        object-fit: contain;
+        object-position: center 58%;
+        background: color-mix(in srgb, var(--graphite) 20%, var(--linen));
+        padding: 0.6rem;
+      }
+      .cover::before { background: color-mix(in srgb, var(--graphite) 22%, transparent); }
+      .cover .inner { padding-bottom: 0.2rem; }
+
+      .media-wrap {
+        height: auto;
+        min-height: unset;
+        max-height: none;
+        aspect-ratio: auto;
+        padding: clamp(0.45rem, 1.7vw, 0.9rem);
+      }
+
+      .media {
+        width: 100%;
+        height: auto;
+        max-height: 74vh;
+        object-fit: contain;
+      }
+
+      .mobile-contain .media {
+        max-height: 76vh;
+      }
+
+      .heritage-classic .media {
+        max-height: 82vh;
+        object-fit: contain;
+        object-position: center top;
+        background: color-mix(in srgb, var(--stone) 90%, var(--linen));
+      }
     }
   </style>
 </head>
@@ -326,8 +366,8 @@
   <div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
 
   <main>
-    <section class="slide cover reveal" aria-label="Обложка презентации">
-      <img src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage в интерьерном пространстве" fetchpriority="high" />
+    <section class="slide cover reveal" aria-label="Обложка презентации A · СТРА">
+      <img src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage в интерьере" fetchpriority="high" />
       <div class="inner">
         <div class="brand">A · СТРА</div>
         <h1>Авторская мебель для архитектурных интерьеров</h1>
@@ -335,7 +375,7 @@
       </div>
     </section>
 
-    <section class="slide statement reveal" aria-label="Позиционирование мастерской">
+    <section class="slide statement reveal" aria-label="Позиционирование мастерской A · СТРА">
       <div>
         <div class="kicker">Позиционирование</div>
         <h2 style="margin-bottom: 1rem;">A · СТРА — мастерская авторской мебели для архитектурных интерьеров.</h2>
@@ -345,16 +385,20 @@
     </section>
 
     <section class="slide clients reveal" aria-label="Слайд доверия клиентов">
-      <div class="copy" style="align-content: center;">
+      <div class="copy" style="align-content:center;">
         <div class="kicker">Контекст проектов</div>
         <h2>Нам доверяют</h2>
         <p>Среди наших заказчиков — частные интерьеры, общественные пространства и проекты, где важны характер, масштаб и долговечность решения.</p>
       </div>
-      <img class="media" src="https://i.postimg.cc/52JwjWCL/Chat-GPT-Image-14-fevr-2026-g-20-06-34.png" alt="Реализованные интерьерные проекты клиентов мастерской A · СТРА" loading="lazy" />
+      <figure class="media-wrap mobile-contain" style="margin:0;">
+        <img class="media" src="https://i.postimg.cc/52JwjWCL/Chat-GPT-Image-14-fevr-2026-g-20-06-34.png" alt="Интерьерные проекты клиентов мастерской A · СТРА" loading="lazy" />
+      </figure>
     </section>
 
-    <section class="slide object reveal" aria-label="Резное кожаное кресло Heritage">
-      <img class="media visual" src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage" loading="lazy" />
+    <section class="slide split reveal" aria-label="Резное кожаное кресло Heritage">
+      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+        <img class="media" src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage" loading="lazy" />
+      </figure>
       <div class="copy">
         <div class="kicker">Объект 01</div>
         <h3>Резное кожаное кресло Heritage</h3>
@@ -363,18 +407,22 @@
       </div>
     </section>
 
-    <section class="slide object alt reveal" aria-label="Кресло Heritage Classic statement версия">
+    <section class="slide split alt reveal" aria-label="Кресло Heritage Classic statement версия">
       <div class="copy">
         <div class="kicker">Объект 02</div>
         <h3>Кресло Heritage Classic (statement версия)</h3>
         <p class="material">Натуральная кожа, массив дерева, латунные гвозди.</p>
         <p class="note">Узнаваемый силуэт, в котором декоративность подчинена форме, масштабу и роли предмета в пространстве.</p>
       </div>
-      <img class="media visual" src="https://i.imgur.com/1e0cuHA.jpeg" alt="Кресло Heritage Classic statement версия" loading="lazy" />
+      <figure class="media-wrap contain-desktop heritage-classic mobile-contain visual" style="margin:0;">
+        <img class="media" src="https://i.imgur.com/1e0cuHA.jpeg" alt="Кресло Heritage Classic statement версия в вертикальной композиции" loading="lazy" />
+      </figure>
     </section>
 
-    <section class="slide object reveal" aria-label="Угловой диван представительского класса">
-      <img class="media visual" src="https://i.imgur.com/Pg5dZUH.png" alt="Угловой диван представительского класса" loading="lazy" />
+    <section class="slide split reveal" aria-label="Угловой диван представительского класса">
+      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+        <img class="media" src="https://i.imgur.com/Pg5dZUH.png" alt="Угловой диван представительского класса" loading="lazy" />
+      </figure>
       <div class="copy">
         <div class="kicker">Объект 03</div>
         <h3>Угловой диван представительского класса</h3>
@@ -383,18 +431,22 @@
       </div>
     </section>
 
-    <section class="slide object alt reveal" aria-label="Кресло Heritage на колесной базе">
+    <section class="slide split alt reveal" aria-label="Кресло Heritage на колесной базе">
       <div class="copy">
         <div class="kicker">Объект 04</div>
         <h3>Кресло Heritage на колесной базе</h3>
         <p class="material">Натуральная кожа, массив дерева, металлическая крестовина.</p>
         <p class="note">Предмет для кабинета и рабочего пространства, где важны статус, тактильность и визуальная собранность.</p>
       </div>
-      <img class="media visual" src="https://i.postimg.cc/cJSQh23G/1c51eec6e84c002d0d9310cb10b26ec0-1770243052.png" alt="Кресло Heritage на колесной базе" loading="lazy" />
+      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+        <img class="media" src="https://i.postimg.cc/cJSQh23G/1c51eec6e84c002d0d9310cb10b26ec0-1770243052.png" alt="Кресло Heritage на колесной базе" loading="lazy" />
+      </figure>
     </section>
 
-    <section class="slide object reveal" aria-label="Кровать с мягким архитектурным изголовьем">
-      <img class="media visual" src="https://i.postimg.cc/k41M1Y0N/720490c15029dad280131423b2d53b27-1770732955.png" alt="Кровать с мягким архитектурным изголовьем" loading="lazy" />
+    <section class="slide split reveal" aria-label="Кровать с мягким архитектурным изголовьем">
+      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+        <img class="media" src="https://i.postimg.cc/k41M1Y0N/720490c15029dad280131423b2d53b27-1770732955.png" alt="Кровать с мягким архитектурным изголовьем" loading="lazy" />
+      </figure>
       <div class="copy">
         <div class="kicker">Объект 05</div>
         <h3>Кровать с мягким архитектурным изголовьем</h3>
@@ -403,18 +455,22 @@
       </div>
     </section>
 
-    <section class="slide object alt reveal" aria-label="Современная кровать с вертикальной прострочкой">
+    <section class="slide split alt reveal" aria-label="Современная кровать с вертикальной прострочкой">
       <div class="copy">
         <div class="kicker">Объект 06</div>
         <h3>Современная кровать с вертикальной прострочкой</h3>
         <p class="material">Текстиль, массив дерева.</p>
         <p class="note">Индивидуальное решение, где пластика формы работает вместе с тишиной материала.</p>
       </div>
-      <img class="media visual" src="https://i.postimg.cc/jjnFnLfH/15cf1e42e21d4141d4ec6a52abbedb2f-1770652377.png" alt="Современная кровать с вертикальной прострочкой" loading="lazy" />
+      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+        <img class="media" src="https://i.postimg.cc/jjnFnLfH/15cf1e42e21d4141d4ec6a52abbedb2f-1770652377.png" alt="Современная кровать с вертикальной прострочкой" loading="lazy" />
+      </figure>
     </section>
 
-    <section class="slide object reveal" aria-label="Диван для переговорной зоны">
-      <img class="media visual" src="https://i.postimg.cc/k55tTbsm/d29350da0f0e5772c0e15acbc1dae661-1770245979.png" alt="Диван для переговорной зоны" loading="lazy" />
+    <section class="slide split reveal" aria-label="Диван для переговорной зоны">
+      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+        <img class="media" src="https://i.postimg.cc/k55tTbsm/d29350da0f0e5772c0e15acbc1dae661-1770245979.png" alt="Диван для переговорной зоны" loading="lazy" />
+      </figure>
       <div class="copy">
         <div class="kicker">Объект 07</div>
         <h3>Диван для переговорной зоны</h3>
@@ -423,7 +479,7 @@
       </div>
     </section>
 
-    <section class="slide principles reveal" aria-label="Принципы работы">
+    <section class="slide principles reveal" aria-label="Принципы работы мастерской A · СТРА">
       <div class="principles-wrap">
         <div>
           <div class="kicker">Метод</div>
@@ -439,7 +495,7 @@
       </div>
     </section>
 
-    <section class="slide closing reveal" aria-label="Финальный слайд контактов">
+    <section class="slide closing reveal" aria-label="Финальный слайд контактов A · СТРА">
       <div class="frame">
         <div class="brand" style="margin-bottom:0;">A · СТРА</div>
         <h2>Обсудить проект</h2>
@@ -454,7 +510,7 @@
   </main>
 
   <script>
-    const slides = [...document.querySelectorAll('.reveal')];
+    const sections = [...document.querySelectorAll('.reveal')];
     const progressFill = document.getElementById('progressFill');
 
     if ('IntersectionObserver' in window) {
@@ -462,17 +518,17 @@
         entries.forEach((entry) => {
           if (entry.isIntersecting) entry.target.classList.add('in');
         });
-      }, { threshold: 0.24 });
+      }, { threshold: 0.22 });
 
-      slides.forEach((slide) => observer.observe(slide));
+      sections.forEach((section) => observer.observe(section));
     } else {
-      slides.forEach((slide) => slide.classList.add('in'));
+      sections.forEach((section) => section.classList.add('in'));
     }
 
     const updateProgress = () => {
       const scrollTop = window.scrollY;
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const ratio = scrollable > 0 ? Math.min(1, Math.max(0, scrollTop / scrollable)) : 0;
+      const scrollRange = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = scrollRange > 0 ? Math.min(1, Math.max(0, scrollTop / scrollRange)) : 0;
       progressFill.style.height = `${ratio * 100}%`;
     };
 
