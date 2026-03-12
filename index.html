@@ -330,6 +330,35 @@
       text-decoration-color: color-mix(in srgb, var(--warm-white) 82%, transparent);
     }
 
+    @media (min-width: 1121px) {
+      .slide-fix-heritage {
+        grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.72fr);
+      }
+
+      .slide-fix-heritage .media-wrap--portrait {
+        --media-height: min(82vh, 920px);
+        --media-pad: clamp(0.45rem, 1.4vw, 0.9rem);
+      }
+
+      .slide-fix-sofa {
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+      }
+
+      .slide-fix-sofa .media-wrap--wide {
+        --media-height: min(72vh, 760px);
+        --media-pad: clamp(0.35rem, 1.2vw, 0.75rem);
+      }
+
+      .slide-fix-bed1 {
+        grid-template-columns: minmax(0, 1.24fr) minmax(0, 0.76fr);
+      }
+
+      .slide-fix-bed1 .media-wrap--bed {
+        --media-height: min(74vh, 780px);
+        --media-pad: clamp(0.45rem, 1.4vw, 0.9rem);
+      }
+    }
+
     @media (max-width: 1120px) {
       .progress { display: none; }
       .slide,
@@ -464,7 +493,7 @@
       </div>
     </section>
 
-    <section class="slide split alt reveal" aria-label="Кресло Heritage Classic statement версия">
+    <section class="slide split alt slide-fix-heritage reveal" aria-label="Кресло Heritage Classic statement версия">
       <div class="copy">
         <div class="kicker">Объект 02</div>
         <h3>Кресло Heritage Classic (statement версия)</h3>
@@ -476,7 +505,7 @@
       </figure>
     </section>
 
-    <section class="slide split reveal" aria-label="Угловой диван представительского класса">
+    <section class="slide split slide-fix-sofa reveal" aria-label="Угловой диван представительского класса">
       <figure class="media-wrap media-wrap--wide visual" style="margin:0;">
         <img class="media" src="https://i.imgur.com/Pg5dZUH.png" alt="Угловой диван представительского класса" loading="lazy" />
       </figure>
@@ -500,7 +529,7 @@
       </figure>
     </section>
 
-    <section class="slide split reveal" aria-label="Кровать с мягким архитектурным изголовьем">
+    <section class="slide split slide-fix-bed1 reveal" aria-label="Кровать с мягким архитектурным изголовьем">
       <figure class="media-wrap media-wrap--bed visual" style="margin:0;">
         <img class="media" src="https://i.postimg.cc/k41M1Y0N/720490c15029dad280131423b2d53b27-1770732955.png" alt="Кровать с мягким архитектурным изголовьем" loading="lazy" />
       </figure>
