@@ -916,7 +916,7 @@
           <div>
             <div class="kicker">Метод</div>
             <h2>Принципы работы</h2>
-            <p class="principles-intro">Каждый проект рассматриваем как часть архитектурного контекста и выстраиваем премет через пропорции, материал и сценарий использования.</p>
+            <p class="principles-intro">Каждый проект рассматриваем как часть архитектурного контекста и выстраиваем предмет через пропорции, материал и сценарий использования.</p>
           </div>
           <ul class="principles-list">
             <li>Работаем в контексте архитектуры пространства и масштаба помещения.</li>
@@ -950,15 +950,18 @@
     const slideCounter = document.getElementById('slideCounter');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const totalSlides = slides.length;
+    const desktopModeQuery = window.matchMedia('(min-width: 1121px) and (hover: hover) and (pointer: fine)');
+
     let activeSlide = 0;
+    let wheelLocked = false;
 
     const pad = (value) => String(value).padStart(2, '0');
 
-    const scrollToSlide = (index) => {
+    const scrollToSlide = (index, forceAuto = false) => {
       if (!presentation || !slides.length) return;
       const target = Math.max(0, Math.min(totalSlides - 1, index));
       slides[target].scrollIntoView({
-        behavior: reduceMotion ? 'auto' : 'smooth',
+        behavior: (reduceMotion || forceAuto) ? 'auto' : 'smooth',
         block: 'start'
       });
     };
@@ -972,7 +975,6 @@
 
       let nearestIndex = 0;
       let nearestDistance = Infinity;
-
       slides.forEach((slide, index) => {
         const distance = Math.abs(slide.offsetTop - scrollTop);
         if (distance < nearestDistance) {
@@ -982,54 +984,39 @@
       });
 
       activeSlide = nearestIndex;
-
       if (slideCounter) {
         slideCounter.textContent = `${pad(activeSlide + 1)} / ${pad(totalSlides)}`;
       }
     };
 
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('in');
-        });
-      }, { threshold: 0.22, root: presentation || null });
+    const onWheelDesktop = (event) => {
+      if (!desktopModeQuery.matches) return;
+      if (Math.abs(event.deltaY) < 12) return;
 
-      revealItems.forEach((item) => observer.observe(item));
-    } else {
-      revealItems.forEach((item) => item.classList.add('in'));
-    }
+      event.preventDefault();
+      if (wheelLocked) return;
 
-    if (presentation) {
-      presentation.addEventListener('scroll', updatePresentationState, { passive: true });
-      window.addEventListener('resize', updatePresentationState);
-      updatePresentationState();
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const nextSlide = Math.max(0, Math.min(totalSlides - 1, activeSlide + direction));
+      if (nextSlide === activeSlide) return;
 
-      let touchStartY = null;
-      presentation.addEventListener('touchstart', (event) => {
-        touchStartY = event.changedTouches[0].clientY;
-      }, { passive: true });
+      wheelLocked = true;
+      scrollToSlide(nextSlide);
 
-      presentation.addEventListener('touchend', (event) => {
-        if (touchStartY === null) return;
-        const deltaY = event.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(deltaY) > 54) {
-          if (deltaY < 0) scrollToSlide(activeSlide + 1);
-          else scrollToSlide(activeSlide - 1);
-        }
-        touchStartY = null;
-      }, { passive: true });
-    }
+      window.setTimeout(() => {
+        wheelLocked = false;
+      }, reduceMotion ? 120 : 720);
+    };
 
-    document.addEventListener('keydown', (event) => {
+    const onKeyDown = (event) => {
       if (!presentation || window.matchMedia('print').matches) return;
       const tag = document.activeElement?.tagName;
       if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement?.isContentEditable) return;
 
       const key = event.key;
-      if (['ArrowRight', 'ArrowDown', 'PageDown', 'ArrowLeft', 'ArrowUp', 'PageUp', 'Home', 'End', ' '].includes(key)) {
-        event.preventDefault();
-      }
+      const handledKeys = ['ArrowRight', 'ArrowDown', 'PageDown', 'ArrowLeft', 'ArrowUp', 'PageUp', 'Home', 'End', ' '];
+      if (!handledKeys.includes(key)) return;
+      event.preventDefault();
 
       if (key === 'ArrowRight' || key === 'ArrowDown' || key === 'PageDown' || (key === ' ' && !event.shiftKey)) {
         scrollToSlide(activeSlide + 1);
@@ -1040,7 +1027,42 @@
       } else if (key === 'End') {
         scrollToSlide(totalSlides - 1);
       }
-    });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('in');
+        });
+      }, { threshold: 0.22, root: presentation || null });
+
+      revealItems.forEach((item) => revealObserver.observe(item));
+
+      const activeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const index = slides.indexOf(entry.target);
+          if (index >= 0) {
+            activeSlide = index;
+            updatePresentationState();
+          }
+        });
+      }, { threshold: 0.6, root: presentation || null });
+
+      slides.forEach((slide) => activeObserver.observe(slide));
+    } else {
+      revealItems.forEach((item) => item.classList.add('in'));
+    }
+
+    if (presentation) {
+      presentation.addEventListener('scroll', updatePresentationState, { passive: true });
+      presentation.addEventListener('wheel', onWheelDesktop, { passive: false });
+      window.addEventListener('resize', updatePresentationState);
+      document.addEventListener('keydown', onKeyDown);
+
+      updatePresentationState();
+      scrollToSlide(0, true);
+    }
   </script>
 </body>
 </html>
