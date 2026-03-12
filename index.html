@@ -120,6 +120,7 @@
       color: var(--warm-white);
       align-items: end;
       isolation: isolate;
+      min-height: 100vh;
     }
 
     .cover::before {
@@ -130,14 +131,18 @@
       z-index: -1;
     }
 
-    .cover img {
+    .cover .hero-media {
       position: absolute;
       inset: 0;
+      z-index: -2;
+    }
+
+    .cover .hero-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 45%;
-      z-index: -2;
+      object-position: center 42%;
+      display: block;
     }
 
     .cover .inner {
@@ -194,9 +199,13 @@
     }
 
     .media-wrap {
+      --media-height: min(70vh, 760px);
+      --media-fit: contain;
+      --media-position: center;
+      --media-pad: clamp(0.55rem, 1.8vw, 1.15rem);
       border: 1px solid var(--line);
       background: var(--stone);
-      height: min(70vh, 760px);
+      height: var(--media-height);
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -205,15 +214,45 @@
     .media {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center;
+      object-fit: var(--media-fit);
+      object-position: var(--media-position);
+      padding: var(--media-pad);
       display: block;
     }
 
-    .contain-desktop .media {
-      object-fit: contain;
-      padding: clamp(0.7rem, 2.4vw, 1.5rem);
-      background: color-mix(in srgb, var(--stone) 82%, var(--linen));
+    .media-wrap--clients {
+      --media-fit: cover;
+      --media-pad: 0;
+      --media-position: center;
+      --media-height: min(72vh, 780px);
+    }
+
+    .media-wrap--portrait {
+      --media-fit: contain;
+      --media-position: center top;
+      --media-pad: clamp(0.55rem, 1.7vw, 1rem);
+      --media-height: min(75vh, 810px);
+    }
+
+    .media-wrap--wide {
+      --media-fit: contain;
+      --media-position: center;
+      --media-pad: clamp(0.45rem, 1.5vw, 0.95rem);
+      --media-height: min(68vh, 700px);
+    }
+
+    .media-wrap--bed {
+      --media-fit: contain;
+      --media-position: center;
+      --media-pad: clamp(0.55rem, 1.8vw, 1.1rem);
+      --media-height: min(67vh, 680px);
+    }
+
+    .media-wrap--chair {
+      --media-fit: contain;
+      --media-position: center;
+      --media-pad: clamp(0.5rem, 1.7vw, 1rem);
+      --media-height: min(69vh, 710px);
     }
 
     .clients {
@@ -300,7 +339,7 @@
       .split.alt { grid-template-columns: 1fr; }
       .split.alt .copy,
       .split.alt .visual { order: initial; }
-      .media-wrap { height: min(60vh, 560px); }
+      .media-wrap { --media-height: min(62vh, 580px); }
       .copy { align-content: start; padding-bottom: 0; }
       .principles-list {
         grid-template-columns: 1fr;
@@ -316,48 +355,64 @@
 
     @media (max-width: 760px) {
       body { scroll-snap-type: y proximity; }
+
       .slide {
         min-height: auto;
-        padding-top: clamp(2.1rem, 6vh, 3.2rem);
-        padding-bottom: clamp(2.1rem, 6vh, 3.2rem);
+        padding-top: clamp(2rem, 6vh, 3.1rem);
+        padding-bottom: clamp(2rem, 6vh, 3.1rem);
       }
+
       .cover {
         min-height: 100vh;
         align-items: end;
       }
-      .cover img {
-        object-fit: contain;
-        object-position: center 58%;
-        background: color-mix(in srgb, var(--graphite) 20%, var(--linen));
-        padding: 0.6rem;
+
+      .cover::before {
+        background: linear-gradient(
+          to top,
+          color-mix(in srgb, var(--graphite) 56%, transparent) 0%,
+          color-mix(in srgb, var(--graphite) 22%, transparent) 46%,
+          transparent 100%
+        );
       }
-      .cover::before { background: color-mix(in srgb, var(--graphite) 22%, transparent); }
-      .cover .inner { padding-bottom: 0.2rem; }
+
+      .cover .hero-media img {
+        object-fit: cover;
+        object-position: center 38%;
+      }
+
+      .cover .inner {
+        max-width: 100%;
+        padding-bottom: 0.5rem;
+      }
 
       .media-wrap {
+        --media-height: auto;
         height: auto;
-        min-height: unset;
-        max-height: none;
         aspect-ratio: auto;
-        padding: clamp(0.45rem, 1.7vw, 0.9rem);
+        padding: clamp(0.4rem, 1.6vw, 0.85rem);
       }
 
       .media {
         width: 100%;
         height: auto;
-        max-height: 74vh;
-        object-fit: contain;
-      }
-
-      .mobile-contain .media {
         max-height: 76vh;
+        object-fit: contain;
+        padding: 0;
       }
 
-      .heritage-classic .media {
-        max-height: 82vh;
-        object-fit: contain;
+      .media-wrap--portrait .media {
+        max-height: 84vh;
         object-position: center top;
-        background: color-mix(in srgb, var(--stone) 90%, var(--linen));
+      }
+
+      .media-wrap--wide .media {
+        max-height: 62vh;
+      }
+
+      .media-wrap--bed .media,
+      .media-wrap--chair .media {
+        max-height: 68vh;
       }
     }
   </style>
@@ -367,7 +422,9 @@
 
   <main>
     <section class="slide cover reveal" aria-label="Обложка презентации A · СТРА">
-      <img src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage в интерьере" fetchpriority="high" />
+      <figure class="hero-media" style="margin:0;">
+        <img src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage в интерьере" fetchpriority="high" />
+      </figure>
       <div class="inner">
         <div class="brand">A · СТРА</div>
         <h1>Авторская мебель для архитектурных интерьеров</h1>
@@ -390,13 +447,13 @@
         <h2>Нам доверяют</h2>
         <p>Среди наших заказчиков — частные интерьеры, общественные пространства и проекты, где важны характер, масштаб и долговечность решения.</p>
       </div>
-      <figure class="media-wrap mobile-contain" style="margin:0;">
+      <figure class="media-wrap media-wrap--clients visual" style="margin:0;">
         <img class="media" src="https://i.postimg.cc/52JwjWCL/Chat-GPT-Image-14-fevr-2026-g-20-06-34.png" alt="Интерьерные проекты клиентов мастерской A · СТРА" loading="lazy" />
       </figure>
     </section>
 
     <section class="slide split reveal" aria-label="Резное кожаное кресло Heritage">
-      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+      <figure class="media-wrap media-wrap--chair visual" style="margin:0;">
         <img class="media" src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage" loading="lazy" />
       </figure>
       <div class="copy">
@@ -414,13 +471,13 @@
         <p class="material">Натуральная кожа, массив дерева, латунные гвозди.</p>
         <p class="note">Узнаваемый силуэт, в котором декоративность подчинена форме, масштабу и роли предмета в пространстве.</p>
       </div>
-      <figure class="media-wrap contain-desktop heritage-classic mobile-contain visual" style="margin:0;">
+      <figure class="media-wrap media-wrap--portrait visual" style="margin:0;">
         <img class="media" src="https://i.imgur.com/1e0cuHA.jpeg" alt="Кресло Heritage Classic statement версия в вертикальной композиции" loading="lazy" />
       </figure>
     </section>
 
     <section class="slide split reveal" aria-label="Угловой диван представительского класса">
-      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+      <figure class="media-wrap media-wrap--wide visual" style="margin:0;">
         <img class="media" src="https://i.imgur.com/Pg5dZUH.png" alt="Угловой диван представительского класса" loading="lazy" />
       </figure>
       <div class="copy">
@@ -438,13 +495,13 @@
         <p class="material">Натуральная кожа, массив дерева, металлическая крестовина.</p>
         <p class="note">Предмет для кабинета и рабочего пространства, где важны статус, тактильность и визуальная собранность.</p>
       </div>
-      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+      <figure class="media-wrap media-wrap--chair visual" style="margin:0;">
         <img class="media" src="https://i.postimg.cc/cJSQh23G/1c51eec6e84c002d0d9310cb10b26ec0-1770243052.png" alt="Кресло Heritage на колесной базе" loading="lazy" />
       </figure>
     </section>
 
     <section class="slide split reveal" aria-label="Кровать с мягким архитектурным изголовьем">
-      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+      <figure class="media-wrap media-wrap--bed visual" style="margin:0;">
         <img class="media" src="https://i.postimg.cc/k41M1Y0N/720490c15029dad280131423b2d53b27-1770732955.png" alt="Кровать с мягким архитектурным изголовьем" loading="lazy" />
       </figure>
       <div class="copy">
@@ -462,13 +519,13 @@
         <p class="material">Текстиль, массив дерева.</p>
         <p class="note">Индивидуальное решение, где пластика формы работает вместе с тишиной материала.</p>
       </div>
-      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+      <figure class="media-wrap media-wrap--bed visual" style="margin:0;">
         <img class="media" src="https://i.postimg.cc/jjnFnLfH/15cf1e42e21d4141d4ec6a52abbedb2f-1770652377.png" alt="Современная кровать с вертикальной прострочкой" loading="lazy" />
       </figure>
     </section>
 
     <section class="slide split reveal" aria-label="Диван для переговорной зоны">
-      <figure class="media-wrap mobile-contain visual" style="margin:0;">
+      <figure class="media-wrap media-wrap--wide visual" style="margin:0;">
         <img class="media" src="https://i.postimg.cc/k55tTbsm/d29350da0f0e5772c0e15acbc1dae661-1770245979.png" alt="Диван для переговорной зоны" loading="lazy" />
       </figure>
       <div class="copy">
