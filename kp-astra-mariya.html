@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A · СТРА — коммерческое предложение</title>
+<meta name="description" content="A · СТРА — мастерская авторской мебели для архитектурных и представительских интерьеров. Коммерческое предложение." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#1c1c1a;
+    --graphite:#2c2c2c;
+    --walnut:#6b5d4d;
+    --oak:#9c8b75;
+    --brass:#7d6640;
+    --stone:#e8e4dc;
+    --linen:#f2f0eb;
+    --warm-white:#fafaf8;
+    --steel:#d4d0c8;
+    --line:#d9d5cc;
+
+    --serif:"EB Garamond", Georgia, "Times New Roman", serif;
+    --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --pad-x:clamp(1.15rem, 5vw, 4.5rem);
+    --max:64rem;
+    --copy:40rem;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--warm-white);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.62;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+
+  /* ---------- типографика ---------- */
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;margin:0;line-height:1.16;letter-spacing:.005em}
+  h1{font-size:clamp(2.4rem,6vw,4.15rem);font-weight:500}
+  h2{font-size:clamp(1.7rem,3.4vw,2.5rem)}
+  h3{font-size:clamp(1.25rem,2.2vw,1.6rem)}
+  h4{font-size:1.12rem}
+  p{margin:0 0 1em}
+  p:last-child{margin-bottom:0}
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:.665rem;
+    font-weight:500;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--walnut);
+    margin:0 0 1.15rem;
+  }
+  .eyebrow--light{color:var(--oak)}
+  .lead{font-size:1.075rem;color:#39362f;max-width:var(--copy)}
+  .small{font-size:.875rem;line-height:1.6}
+  .muted{color:var(--walnut)}
+
+  /* ---------- сетка листа ---------- */
+  .sheet{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:clamp(3rem,7vh,5.5rem) var(--pad-x);
+    position:relative;
+  }
+  .sheet + .sheet{border-top:1px solid var(--line)}
+  .sheet__head{
+    display:grid;
+    grid-template-columns:2.75rem 1fr;
+    gap:0 1.5rem;
+    align-items:start;
+    margin-bottom:2.4rem;
+  }
+  .sheet__num{
+    font-family:var(--sans);
+    font-size:.72rem;
+    font-weight:500;
+    letter-spacing:.14em;
+    color:var(--brass);
+    padding-top:.55rem;
+    border-top:1px solid var(--brass);
+  }
+  .sheet__title{max-width:44rem}
+
+  /* ---------- титул ---------- */
+  .cover{
+    background:var(--ink);
+    color:var(--warm-white);
+    max-width:none;
+    padding:clamp(2.6rem,6vh,4.5rem) var(--pad-x) clamp(2.4rem,5vh,3.5rem);
+    border-top:none;
+  }
+  .cover__inner{max-width:var(--max);margin:0 auto}
+  .cover__brand{
+    font-family:var(--serif);
+    font-size:1.42rem;
+    letter-spacing:.3em;
+    color:var(--warm-white);
+    margin-bottom:.35rem;
+  }
+  .cover__kicker{
+    font-size:.665rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--oak);margin-bottom:clamp(2rem,7vh,4rem);
+  }
+  .cover h1{color:var(--warm-white);max-width:20ch}
+  .cover__rule{height:1px;background:var(--brass);margin:1.9rem 0 1.6rem;max-width:9rem}
+  .cover__sub{color:#cfcabf;max-width:38rem;font-size:1.03rem}
+  .cover__grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:.55rem;
+    margin:clamp(2rem,5vh,3rem) 0 clamp(1.8rem,4vh,2.6rem);
+  }
+  .cover__grid figure{margin:0;background:#232320;aspect-ratio:4/3;overflow:hidden}
+  .cover__grid img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) contrast(1.02)}
+  .cover__meta{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));
+    gap:1.4rem 2rem;
+    border-top:1px solid #3a3a36;
+    padding-top:1.5rem;
+  }
+  .cover__meta dt{
+    font-size:.635rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--oak);margin-bottom:.4rem;
+  }
+  .cover__meta dd{margin:0;font-size:.94rem;color:#e6e2d8;line-height:1.5}
+
+  /* ---------- текстовые блоки ---------- */
+  .cols{
+    display:grid;
+    grid-template-columns:2.75rem minmax(0,1fr);
+    gap:0 1.5rem;
+  }
+  .cols__body{max-width:var(--copy)}
+  .wide .cols__body{max-width:none}
+
+  .principles{list-style:none;margin:2.2rem 0 0;padding:0;display:grid;gap:1.45rem}
+  .principles li{
+    display:grid;grid-template-columns:1.6rem 1fr;gap:0 1rem;
+    padding-bottom:1.35rem;border-bottom:1px solid var(--line);
+  }
+  .principles li:last-child{border-bottom:none;padding-bottom:0}
+  .principles b{
+    font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.1em;
+    color:var(--brass);padding-top:.28rem;
+  }
+  .principles h4{margin-bottom:.3rem}
+  .principles p{font-size:.94rem;color:#3f3c35}
+
+  .note{
+    background:var(--linen);
+    border-left:2px solid var(--brass);
+    padding:1.35rem 1.6rem;
+    margin-top:2.4rem;
+    max-width:var(--copy);
+  }
+  .note h4{margin-bottom:.45rem}
+  .note p{font-size:.94rem;color:#3f3c35}
+
+  /* ---------- портфолио ---------- */
+  .object{
+    display:grid;
+    grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+    gap:0 clamp(1.6rem,4vw,3.2rem);
+    align-items:center;
+    padding:clamp(1.6rem,4vh,2.6rem) 0;
+    border-bottom:1px solid var(--line);
+  }
+  .object:last-of-type{border-bottom:none}
+  .object__media{background:var(--linen);overflow:hidden}
+  .object__media img{
+    width:100%;
+    height:clamp(200px,34vh,330px);
+    object-fit:cover;
+    object-position:center;
+  }
+  .object__media--contain img{object-fit:contain;padding:.6rem;background:var(--linen)}
+  .object__no{
+    font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);
+    display:block;margin-bottom:.55rem;
+  }
+  .object h3{margin-bottom:.6rem}
+  .object__mat{
+    font-size:.8rem;letter-spacing:.06em;color:var(--walnut);
+    padding-bottom:.75rem;margin-bottom:.85rem;border-bottom:1px solid var(--line);
+  }
+  .object p{font-size:.94rem;color:#3f3c35;margin-bottom:.7rem}
+  .object__role{font-size:.86rem;color:var(--walnut)}
+  .object__role span{color:var(--ink)}
+  .object--flip .object__media{order:2}
+
+  /* ---------- таблицы ---------- */
+  table{width:100%;border-collapse:collapse;margin:1.4rem 0 0;font-size:.885rem}
+  caption{
+    text-align:left;font-size:.665rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--walnut);padding-bottom:.7rem;
+  }
+  th,td{text-align:left;vertical-align:top;padding:.72rem .8rem;border-bottom:1px solid var(--line)}
+  thead th{
+    font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);
+    background:var(--linen);
+  }
+  tbody tr:nth-child(even) td{background:#f7f5f1}
+  td.fill{background:#fff !important;color:var(--oak)}
+  .t-num{width:2.6rem;color:var(--brass)}
+
+  /* ---------- пакеты ---------- */
+  .tiers{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+    gap:1.15rem;margin-top:2rem;
+  }
+  .tier{border:1px solid var(--line);padding:1.5rem 1.5rem 1.6rem;background:#fff}
+  .tier--primary{border-color:var(--ink);background:var(--linen)}
+  .tier__tag{
+    font-size:.635rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--brass);margin-bottom:.9rem;
+  }
+  .tier h3{font-size:1.35rem;margin-bottom:.65rem}
+  .tier p{font-size:.9rem;color:#3f3c35}
+  .tier ul{margin:.9rem 0 0;padding-left:1.05rem;font-size:.88rem;color:#3f3c35}
+  .tier li{margin-bottom:.4rem}
+
+  /* ---------- процесс ---------- */
+  .stages{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:0}
+  .stages li{
+    display:grid;grid-template-columns:2.4rem minmax(0,1fr) minmax(0,1.05fr);
+    gap:0 1.2rem;
+    padding:1.1rem 0;
+    border-top:1px solid var(--line);
+    align-items:baseline;
+  }
+  .stages li:last-child{border-bottom:1px solid var(--line)}
+  .stages .st-n{font-size:.72rem;letter-spacing:.12em;color:var(--brass);font-weight:500}
+  .stages .st-t{font-family:var(--serif);font-size:1.16rem}
+  .stages .st-r{font-size:.88rem;color:#3f3c35}
+  .stages .st-r b{font-weight:500;color:var(--ink)}
+
+  /* ---------- контакты ---------- */
+  .contact{border-top:none;background:var(--ink);color:var(--warm-white);max-width:none;padding:clamp(3rem,7vh,5rem) var(--pad-x)}
+  .contact__inner{max-width:var(--max);margin:0 auto}
+  .contact h2{color:var(--warm-white);max-width:22ch}
+  .contact .lead{color:#cfcabf}
+  .contact__rule{height:1px;background:var(--brass);max-width:9rem;margin:1.6rem 0 2.2rem}
+  .contact__grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));
+    gap:1.6rem 2rem;border-top:1px solid #3a3a36;padding-top:1.8rem;margin-top:2.4rem;
+  }
+  .contact__grid dt{font-size:.635rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oak);margin-bottom:.45rem}
+  .contact__grid dd{margin:0;font-size:1rem;color:#efece3}
+  .contact__grid a{text-decoration:none;border-bottom:1px solid #4a4a44;padding-bottom:1px}
+  .contact__grid a:hover{border-color:var(--brass)}
+  .steps{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;max-width:var(--copy)}
+  .steps li{display:grid;grid-template-columns:1.5rem 1fr;gap:.8rem;font-size:.95rem;color:#dcd8ce}
+  .steps span{color:var(--oak);font-size:.75rem;letter-spacing:.1em;padding-top:.22rem}
+
+  .signature{
+    margin-top:2.8rem;padding-top:1.4rem;border-top:1px solid #3a3a36;
+    font-size:.8rem;color:#8f8a80;display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;
+  }
+
+  .print-hint{
+    position:fixed;right:1rem;bottom:1rem;z-index:20;
+    background:var(--ink);color:var(--warm-white);
+    font-size:.76rem;letter-spacing:.04em;
+    padding:.6rem .9rem;border:none;cursor:pointer;
+  }
+  .print-hint:hover{background:var(--walnut)}
+
+  .media--missing{
+    position:relative;background:var(--linen);min-height:clamp(180px,30vh,300px);
+    display:flex;align-items:center;justify-content:center;padding:1.4rem;
+  }
+  .media--missing::after{
+    content:attr(data-label);
+    font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--walnut);text-align:center;line-height:1.8;max-width:22ch;
+  }
+  .cover__grid .media--missing{background:#232320;min-height:0;height:100%}
+  .cover__grid .media--missing::after{color:var(--oak);font-size:.6rem;letter-spacing:.14em}
+
+  :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+  @media (max-width:760px){
+    .cols,.sheet__head{grid-template-columns:1fr}
+    .sheet__num{border-top:none;padding-top:0;margin-bottom:.6rem}
+    .object{grid-template-columns:1fr;gap:1.2rem}
+    .object--flip .object__media{order:0}
+    .cover__grid{grid-template-columns:1fr 1fr}
+    .cover__grid figure:last-child{display:none}
+    .stages li{grid-template-columns:2rem 1fr;gap:.35rem 1rem}
+    .stages .st-r{grid-column:2}
+    table{font-size:.8rem}
+    th,td{padding:.6rem .5rem}
+  }
+
+  @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+
+  /* ---------- печать / PDF ---------- */
+  @page{size:A4;margin:14mm 13mm}
+  @media print{
+    :root{--pad-x:0}
+    body{background:#fff;font-size:10.2pt;line-height:1.5}
+    .print-hint{display:none}
+    .sheet{max-width:none;padding:0;margin:0;break-after:page;page-break-after:always}
+    .sheet + .sheet{border-top:none}
+    .cover{padding:12mm 12mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .cover,.contact,.tier--primary,.note,thead th,tbody tr:nth-child(even) td,.object__media{
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    }
+    .contact{padding:14mm 12mm;break-after:auto;page-break-after:auto}
+    h1{font-size:30pt}
+    h2{font-size:18pt}
+    h3{font-size:13pt}
+    h4{font-size:11pt}
+    .lead{font-size:10.8pt}
+    .object{break-inside:avoid;page-break-inside:avoid;padding:3.5mm 0}
+    .media--missing{min-height:42mm}
+    .object__media img{height:42mm}
+    .object__media--contain img{height:42mm}
+    table,.tier,.note,.principles li,.stages li{break-inside:avoid;page-break-inside:avoid}
+    .cover__grid figure{aspect-ratio:1/1}
+    a{text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ ТИТУЛ ============ -->
+<header class="sheet cover">
+  <div class="cover__inner">
+    <div class="cover__brand">A · СТРА</div>
+    <div class="cover__kicker">Мастерская авторской мебели · Омск · с 2004 года</div>
+
+    <h1>Авторская мебель для архитектурных и представительских интерьеров</h1>
+    <div class="cover__rule"></div>
+    <p class="cover__sub">Коммерческое предложение о сотрудничестве: проектирование, производство
+      и установка мебели для кабинетов руководства, переговорных и представительских зон,
+      с возможностью перехода к серийным партиям по рамочному договору.</p>
+
+    <div class="cover__grid">
+      <figure><img src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage в интерьере"  data-local="images/01-heritage-armchair.jpeg" referrerpolicy="no-referrer" decoding="async" /></figure>
+      <figure><img src="https://i.imgur.com/Pg5dZUH.png" alt="Угловой диван представительского класса"  data-local="images/03-corner-sofa.png" referrerpolicy="no-referrer" decoding="async" /></figure>
+      <figure><img src="https://i.postimg.cc/k55tTbsm/d29350da0f0e5772c0e15acbc1dae661-1770245979.png" alt="Диван для переговорной зоны"  data-local="images/07-meeting-sofa.png" referrerpolicy="no-referrer" decoding="async" /></figure>
+    </div>
+
+    <dl class="cover__meta">
+      <div>
+        <dt>Кому</dt>
+        <dd>Парфёнову Олегу Анатольевичу,<br />начальнику службы безопасности</dd>
+      </div>
+      <div>
+        <dt>Организация</dt>
+        <dd>ООО «Мебельная фабрика Мария»<br />ИНН 6455026772, г. Саратов</dd>
+      </div>
+      <div>
+        <dt>От кого</dt>
+        <dd>Мастерская A · СТРА<br />г. Омск, m-astra.ru</dd>
+      </div>
+      <div>
+        <dt>Документ</dt>
+        <dd>Коммерческое предложение<br />Действительно 60 дней с даты отправки</dd>
+      </div>
+    </dl>
+  </div>
+</header>
+
+<!-- ============ 01 · КТО МЫ ============ -->
+<section class="sheet">
+  <div class="sheet__head">
+    <div class="sheet__num">01</div>
+    <div class="sheet__title">
+      <p class="eyebrow">Кто мы</p>
+      <h2>Мастерская, которая делает предмет частью пространства</h2>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div></div>
+    <div class="cols__body">
+      <p class="lead">A · СТРА — мастерская авторской мебели для архитектурных интерьеров.
+        Мы проектируем и создаём предметы, которые становятся частью пространства:
+        точные в пропорциях, честные в материале, выполненные вручную для конкретного проекта.</p>
+
+      <p>За более чем 20 лет работы мы прошли путь от единичных изделий до полных меблировок
+        частных интерьеров, общественных пространств, кабинетов руководителей и переговорных зон.
+        Основная специализация сегодня — премиальный и профессиональный сегмент: кожа, массив дерева,
+        латунь, ручная резьба, индивидуальная посадка предмета в готовую архитектуру.</p>
+
+      <p>При этом наше производство изначально построено как управляемое, а не как штучное ателье.
+        Технологические карты, повторяемая раскладка, стабильные поставщики материалов и собственный
+        контроль качества позволяют нам при наличии рамочного контракта перестроить процессы
+        под серийные партии — без потери контроля над качеством и сроками.</p>
+
+      <div class="note">
+        <h4>Почему это предложение адресовано службе безопасности</h4>
+        <p>Решение о новом подрядчике в производственной компании — это в первую очередь вопрос
+          проверяемости и управляемости риска, и только затем вопрос эстетики. Ниже мы описываем
+          не только то, что мы делаем, но и то, как это можно проверить: этапы, документы,
+          точки контроля и ответственность сторон.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · ПРИНЦИПЫ ============ -->
+<section class="sheet">
+  <div class="sheet__head">
+    <div class="sheet__num">02</div>
+    <div class="sheet__title">
+      <p class="eyebrow">Метод</p>
+      <h2>Принципы работы и что они дают заказчику</h2>
+    </div>
+  </div>
+
+  <div class="cols wide">
+    <div></div>
+    <div class="cols__body">
+      <p class="lead">Каждый проект мы рассматриваем как часть архитектурного контекста
+        и выстраиваем предмет через пропорции, материал и сценарий использования.</p>
+
+      <ul class="principles">
+        <li>
+          <b>01</b>
+          <div>
+            <h4>Работаем в контексте архитектуры и масштаба помещения</h4>
+            <p>Предмет проектируется под конкретные габариты, оси, проходы и точки обзора.
+              Результат: в пространстве нет случайных элементов, схема расстановки предсказуема
+              и согласуется до начала производства.</p>
+          </div>
+        </li>
+        <li>
+          <b>02</b>
+          <div>
+            <h4>Проектируем под конкретный интерьер, а не под универсальный каталог</h4>
+            <p>Мебель не «подбирается похожая», а рассчитывается под сценарий: кто садится,
+              как проходит, что видно от двери. Для кабинетов и переговорных это означает
+              контролируемую эргономику и отсутствие переделок после установки.</p>
+          </div>
+        </li>
+        <li>
+          <b>03</b>
+          <div>
+            <h4>Выбираем материалы, рассчитанные на долгий срок службы</h4>
+            <p>Натуральная кожа, массив дерева, латунь, металл: фактуры, которые с годами
+              не осыпаются и не теряют вид, а приобретают патину. Меньше циклов замены —
+              меньше работ и допуска подрядчиков в контролируемые зоны.</p>
+          </div>
+        </li>
+        <li>
+          <b>04</b>
+          <div>
+            <h4>Изготавливаем вручную и сопровождаем проект до финальной установки</h4>
+            <p>Один ответственный по проекту от эскиза до подписания акта. Прозрачная цепочка:
+              кто проектировал, кто изготавливал, кто привёз и кто монтировал.</p>
+          </div>
+        </li>
+        <li>
+          <b>05</b>
+          <div>
+            <h4>Фиксируем состав, сроки и стоимость до запуска в производство</h4>
+            <p>Спецификация материалов, чертежи и график — часть договора. Изменения проходят
+              через письменное согласование, а не «по ходу дела».</p>
+          </div>
+        </li>
+        <li>
+          <b>06</b>
+          <div>
+            <h4>Держим управляемое производство, готовое к серии</h4>
+            <p>Технологические карты и повторяемые операции позволяют перейти от единичных
+              изделий к партии с сохранением одинакового качества по всему тиражу.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · ПОРТФОЛИО ============ -->
+<section class="sheet portfolio-part">
+  <div class="sheet__head">
+    <div class="sheet__num">03</div>
+    <div class="sheet__title">
+      <p class="eyebrow">Портфолио</p>
+      <h2>Реализованные объекты</h2>
+      <p class="lead" style="margin-top:1.1rem">Среди наших заказчиков — частные интерьеры,
+        общественные пространства и проекты, где важны характер, масштаб и долговечность решения.</p>
+    </div>
+  </div>
+
+  <article class="object">
+    <div class="object__media">
+      <img src="https://i.imgur.com/psLnSUr.jpeg" alt="Резное кожаное кресло Heritage"  data-local="images/01-heritage-armchair.jpeg" referrerpolicy="no-referrer" decoding="async" />
+    </div>
+    <div>
+      <span class="object__no">Объект 01</span>
+      <h3>Резное кожаное кресло Heritage</h3>
+      <p class="object__mat">Натуральная кожа · массив дерева · латунные гвозди</p>
+      <p>Предмет с выраженной пластикой и характером, рассчитанный на долгую визуальную
+        и материальную жизнь в интерьере.</p>
+      <p class="object__role">Роль в пространстве: <span>кабинет руководителя, зона приёма посетителей</span></p>
+    </div>
+  </article>
+
+  <article class="object object--flip">
+    <div class="object__media object__media--contain">
+      <img src="https://i.imgur.com/1e0cuHA.jpeg" alt="Кресло Heritage Classic, statement-версия"  data-local="images/02-heritage-classic.jpeg" referrerpolicy="no-referrer" decoding="async" />
+    </div>
+    <div>
+      <span class="object__no">Объект 02</span>
+      <h3>Кресло Heritage Classic — statement-версия</h3>
+      <p class="object__mat">Натуральная кожа · массив дерева · латунные гвозди</p>
+      <p>Узнаваемый силуэт, в котором декоративность подчинена форме, масштабу
+        и роли предмета в пространстве.</p>
+      <p class="object__role">Роль в пространстве: <span>представительская зона, холл, кабинет первого лица</span></p>
+    </div>
+  </article>
+
+  <article class="object">
+    <div class="object__media object__media--contain">
+      <img src="https://i.imgur.com/Pg5dZUH.png" alt="Угловой диван представительского класса"  data-local="images/03-corner-sofa.png" referrerpolicy="no-referrer" decoding="async" />
+    </div>
+    <div>
+      <span class="object__no">Объект 03</span>
+      <h3>Угловой диван представительского класса</h3>
+      <p class="object__mat">Натуральная кожа · массив дерева</p>
+      <p>Крупный мягкий объём, выстроенный как центральный элемент интерьерной композиции.</p>
+      <p class="object__role">Роль в пространстве: <span>зона ожидания, представительская гостиная</span></p>
+    </div>
+  </article>
+
+  <article class="object object--flip">
+    <div class="object__media object__media--contain">
+      <img src="https://i.postimg.cc/cJSQh23G/1c51eec6e84c002d0d9310cb10b26ec0-1770243052.png" alt="Кресло Heritage на колёсной базе"  data-local="images/04-heritage-wheels.png" referrerpolicy="no-referrer" decoding="async" />
+    </div>
+    <div>
+      <span class="object__no">Объект 04</span>
+      <h3>Кресло Heritage на колёсной базе</h3>
+      <p class="object__mat">Натуральная кожа · массив дерева · металлическая крестовина</p>
+      <p>Предмет для кабинета и рабочего пространства, где важны статус, тактильность
+        и визуальная собранность.</p>
+      <p class="object__role">Роль в пространстве: <span>рабочее место руководителя, кабинет службы безопасности</span></p>
+    </div>
+  </article>
+</section>
+
+<section class="sheet portfolio-part">
+  <div class="sheet__head">
+    <div class="sheet__num">03</div>
+    <div class="sheet__title">
+      <p class="eyebrow">Портфолио · продолжение</p>
+      <h2>Реализованные объекты</h2>
+    </div>
+  </div>
+
+  <article class="object">
+    <div class="object__media object__media--contain">
+      <img src="https://i.postimg.cc/k41M1Y0N/720490c15029dad280131423b2d53b27-1770732955.png" alt="Кровать с мягким архитектурным изголовьем"  data-local="images/05-bed-headboard.png" referrerpolicy="no-referrer" decoding="async" />
+    </div>
+    <div>
+      <span class="object__no">Объект 05</span>
+      <h3>Кровать с мягким архитектурным изголовьем</h3>
+      <p class="object__mat">Велюр · МДФ · металл</p>
+      <p>Спокойная геометрия и мягкая материальность для частного пространства.</p>
+      <p class="object__role">Роль в пространстве: <span>частный интерьер, гостевые и резиденц-зоны</span></p>
+    </div>
+  </article>
+
+  <article class="object object--flip">
+    <div class="object__media object__media--contain">
+      <img src="https://i.postimg.cc/jjnFnLfH/15cf1e42e21d4141d4ec6a52abbedb2f-1770652377.png" alt="Современная кровать с вертикальной прострочкой"  data-local="images/06-bed-stitching.png" referrerpolicy="no-referrer" decoding="async" />
+    </div>
+    <div>
+      <span class="object__no">Объект 06</span>
+      <h3>Современная кровать с вертикальной прострочкой</h3>
+      <p class="object__mat">Текстиль · массив дерева</p>
+      <p>Индивидуальное решение, где пластика формы работает вместе с тишиной материала.</p>
+      <p class="object__role">Роль в пространстве: <span>частный интерьер, объекты гостеприимства</span></p>
+    </div>
+  </article>
+
+  <article class="object">
+    <div class="object__media object__media--contain">
+      <img src="https://i.postimg.cc/k55tTbsm/d29350da0f0e5772c0e15acbc1dae661-1770245979.png" alt="Диван для переговорной зоны"  data-local="images/07-meeting-sofa.png" referrerpolicy="no-referrer" decoding="async" />
+    </div>
+    <div>
+      <span class="object__no">Объект 07</span>
+      <h3>Диван для переговорной зоны</h3>
+      <p class="object__mat">Натуральная кожа · металл</p>
+      <p>Пример предмета, спроектированного под конкретный сценарий пространства,
+        а не под каталожную универсальность.</p>
+      <p class="object__role">Роль в пространстве: <span>переговорная, комната совещаний, зона ожидания</span></p>
+    </div>
+  </article>
+
+  <div class="note">
+    <h4>Дополнительные материалы по запросу</h4>
+    <p>Готовы предоставить расширенное портфолио с чертежами узлов, фотографиями на объекте
+      и контактами заказчиков для рекомендаций, а также передать образцы кожи, дерева
+      и фурнитуры для оценки материалов вживую.</p>
+  </div>
+</section>
+
+<!-- ============ 04 · ПРЕДЛОЖЕНИЕ ============ -->
+<section class="sheet">
+  <div class="sheet__head">
+    <div class="sheet__num">04</div>
+    <div class="sheet__title">
+      <p class="eyebrow">Предложение</p>
+      <h2>Что мы предлагаем ООО «Мебельная фабрика Мария»</h2>
+    </div>
+  </div>
+
+  <div class="cols wide">
+    <div></div>
+    <div class="cols__body">
+      <p class="lead">Два направления сотрудничества, которые можно запускать
+        последовательно: сначала пилотный объект, затем — рамочный договор.</p>
+
+      <div class="tiers">
+        <div class="tier tier--primary">
+          <div class="tier__tag">Направление A · основное</div>
+          <h3>Представительский сегмент</h3>
+          <p>Проектирование и изготовление мебели для пространств, где предмет работает
+            на статус компании и на комфорт при долгих встречах.</p>
+          <ul>
+            <li>Кабинеты руководства и службы безопасности</li>
+            <li>Переговорные комнаты и комнаты совещаний</li>
+            <li>Зоны ожидания, приёмные, представительские холлы</li>
+            <li>Шоурумы и выставочные стенды: авторские предметы как акцент экспозиции</li>
+            <li>Линейка Heritage и производные модели под фирменный стиль заказчика</li>
+          </ul>
+        </div>
+
+        <div class="tier">
+          <div class="tier__tag">Направление B · при контракте</div>
+          <h3>Серийная линейка</h3>
+          <p>Перестройка производственных процессов под тиражируемую линейку при заключении
+            рамочного договора — с сохранением контроля качества по всей партии.</p>
+          <ul>
+            <li>Разработка модели, пригодной для повторяемого производства</li>
+            <li>Технологические карты и эталонный образец партии</li>
+            <li>Согласованный ритм отгрузок и объём партии</li>
+            <li>Единые критерии приёмки для каждой единицы тиража</li>
+            <li>Отдельная ценовая матрица под объём</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note">
+        <h4>Практичный первый шаг</h4>
+        <p>Мы предлагаем начать с одного пилотного объекта — например, комплект мебели
+          для переговорной или кабинета. Это даёт возможность проверить нас как подрядчика
+          на ограниченном бюджете и понятном сроке, прежде чем обсуждать рамочное соглашение
+          и серийные объёмы.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · ПРОЦЕСС И РИСКИ ============ -->
+<section class="sheet">
+  <div class="sheet__head">
+    <div class="sheet__num">05</div>
+    <div class="sheet__title">
+      <p class="eyebrow">Процесс</p>
+      <h2>Семь этапов и что каждый из них закрывает по рискам</h2>
+    </div>
+  </div>
+
+  <div class="cols wide">
+    <div></div>
+    <div class="cols__body">
+      <ol class="stages">
+        <li>
+          <span class="st-n">01</span>
+          <span class="st-t">Бриф</span>
+          <span class="st-r">Письменно фиксируем задачу, бюджетную рамку и требования к доступу
+            на объект. <b>Снимает риск</b> расхождения ожиданий и незапланированных доработок.</span>
+        </li>
+        <li>
+          <span class="st-n">02</span>
+          <span class="st-t">Архитектурно-интерьерный анализ</span>
+          <span class="st-r">Обмеры, оси, проходы, сценарий использования помещения.
+            <b>Снимает риск</b> того, что предмет не встанет по месту или перекроет проход.</span>
+        </li>
+        <li>
+          <span class="st-n">03</span>
+          <span class="st-t">Концепция и эскизы</span>
+          <span class="st-r">Визуализация в интерьере, спецификация материалов, образцы кожи
+            и дерева на руках у заказчика. <b>Снимает риск</b> «не того цвета и не той фактуры».</span>
+        </li>
+        <li>
+          <span class="st-n">04</span>
+          <span class="st-t">Согласование и договор</span>
+          <span class="st-r">Чертежи, спецификация, график и стоимость становятся приложениями
+            к договору. <b>Снимает риск</b> изменения цены и состава работ по ходу проекта.</span>
+        </li>
+        <li>
+          <span class="st-n">05</span>
+          <span class="st-t">Производство</span>
+          <span class="st-r">Промежуточные фотоотчёты по контрольным точкам, приёмка каркаса
+            до обивки. <b>Снимает риск</b> обнаружения брака только на финальной приёмке.</span>
+        </li>
+        <li>
+          <span class="st-n">06</span>
+          <span class="st-t">Логистика и установка</span>
+          <span class="st-r">Упаковка под транспортировку, согласованное окно доставки,
+            заранее переданный список монтажников и транспорта. <b>Снимает риск</b> повреждений
+            при перевозке и неконтролируемого доступа на объект.</span>
+        </li>
+        <li>
+          <span class="st-n">07</span>
+          <span class="st-t">Приёмка и сопровождение</span>
+          <span class="st-r">Акт с перечнем позиций, гарантийные обязательства, регламент
+            обслуживания кожи и обивки. <b>Снимает риск</b> спорной ответственности за дефекты.</span>
+        </li>
+      </ol>
+
+      <table>
+        <caption>Проверка подрядчика: документы, которые мы предоставляем до заключения договора</caption>
+        <thead>
+          <tr><th class="t-num">№</th><th>Блок</th><th>Состав</th><th>Срок предоставления</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="t-num">1</td><td>Правоустанавливающие</td><td>Выписка ЕГРЮЛ/ЕГРИП, ИНН/ОГРН, устав, приказ о назначении руководителя</td><td>1 рабочий день</td></tr>
+          <tr><td class="t-num">2</td><td>Налоговые</td><td>Справка об отсутствии задолженности, применяемая система налогообложения</td><td>3 рабочих дня</td></tr>
+          <tr><td class="t-num">3</td><td>Производственные</td><td>Сведения о площадке, оборудовании, численности, фотоотчёт по цеху</td><td>2 рабочих дня</td></tr>
+          <tr><td class="t-num">4</td><td>Материалы</td><td>Поставщики кожи, дерева и фурнитуры, сертификаты и паспорта материалов</td><td>3 рабочих дня</td></tr>
+          <tr><td class="t-num">5</td><td>Персонал на объекте</td><td>Список монтажной бригады с паспортными данными, марки и номера транспорта</td><td>За 5 дней до монтажа</td></tr>
+          <tr><td class="t-num">6</td><td>Рекомендации</td><td>Контакты предыдущих заказчиков и адреса реализованных объектов</td><td>По запросу</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · КОММЕРЧЕСКАЯ ЧАСТЬ ============ -->
+<section class="sheet">
+  <div class="sheet__head">
+    <div class="sheet__num">06</div>
+    <div class="sheet__title">
+      <p class="eyebrow">Коммерческая часть</p>
+      <h2>Структура расчёта</h2>
+    </div>
+  </div>
+
+  <div class="cols wide">
+    <div></div>
+    <div class="cols__body">
+      <p class="lead">Стоимость формируется после обмеров и утверждения спецификации.
+        Ниже — структура расчёта; пустые поля заполняются по итогам брифа.</p>
+
+      <table>
+        <caption>Таблица 1 · Базовый пакет: проектирование, производство, установка</caption>
+        <thead>
+          <tr><th class="t-num">№</th><th>Состав работ</th><th>Единица</th><th>Срок</th><th>Стоимость</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="t-num">1</td><td>Выезд, обмеры, архитектурно-интерьерный анализ</td><td>объект</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">2</td><td>Концепция, эскизы, визуализация в интерьере</td><td>комплект</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">3</td><td>Рабочая документация и спецификация материалов</td><td>комплект</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">4</td><td>Изготовление изделий</td><td>позиция</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">5</td><td>Упаковка, доставка, подъём</td><td>рейс</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">6</td><td>Монтаж, сборка на объекте, сдача по акту</td><td>объект</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">7</td><td>Гарантийное и постгарантийное обслуживание</td><td>период</td><td class="fill">—</td><td class="fill">—</td></tr>
+        </tbody>
+      </table>
+
+      <table>
+        <caption>Таблица 2 · Представительские позиции (линейка Heritage и производные)</caption>
+        <thead>
+          <tr><th class="t-num">№</th><th>Позиция</th><th>Материалы</th><th>Кол-во</th><th>Цена за ед.</th><th>Сумма</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="t-num">1</td><td>Кресло Heritage, кабинетное</td><td>кожа, массив, латунь</td><td class="fill">—</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">2</td><td>Кресло Heritage на колёсной базе</td><td>кожа, массив, металл</td><td class="fill">—</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">3</td><td>Диван для переговорной зоны</td><td>кожа, металл</td><td class="fill">—</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">4</td><td>Угловой диван представительского класса</td><td>кожа, массив</td><td class="fill">—</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">5</td><td>Дополнительные позиции по спецификации</td><td class="fill">—</td><td class="fill">—</td><td class="fill">—</td><td class="fill">—</td></tr>
+          <tr><td class="t-num">6</td><td colspan="4"><b>Итого по разделу</b></td><td class="fill">—</td></tr>
+        </tbody>
+      </table>
+
+      <table>
+        <caption>Таблица 3 · Серийная линейка: параметры для расчёта ценовой матрицы</caption>
+        <thead>
+          <tr><th class="t-num">№</th><th>Параметр</th><th>Значение</th><th>Комментарий</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="t-num">1</td><td>Объём партии, шт.</td><td class="fill">—</td><td>Определяет ценовую ступень</td></tr>
+          <tr><td class="t-num">2</td><td>Количество моделей в линейке</td><td class="fill">—</td><td>Влияет на объём подготовки оснастки</td></tr>
+          <tr><td class="t-num">3</td><td>Ритм отгрузок</td><td class="fill">—</td><td>Партиями или равномерно по графику</td></tr>
+          <tr><td class="t-num">4</td><td>Материалы: давальческие или наши</td><td class="fill">—</td><td>Меняет структуру себестоимости</td></tr>
+          <tr><td class="t-num">5</td><td>Срок рамочного договора</td><td class="fill">—</td><td>Определяет глубину перестройки процессов</td></tr>
+          <tr><td class="t-num">6</td><td>Критерии приёмки</td><td class="fill">—</td><td>Фиксируются на эталонном образце</td></tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        <h4>Условия</h4>
+        <p>Порядок оплаты, размер аванса, штрафные санкции за срыв сроков и объём гарантии
+          обсуждаются отдельно и фиксируются в договоре. Мы готовы работать по типовому
+          договору заказчика и проходить стандартную процедуру проверки контрагента.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ КОНТАКТЫ ============ -->
+<section class="sheet contact">
+  <div class="contact__inner">
+    <p class="eyebrow eyebrow--light">Следующий шаг</p>
+    <h2>Обсудим задачи по кабинетам, переговорным и представительским зонам</h2>
+    <div class="contact__rule"></div>
+    <p class="lead">Предлагаем встречу или созвон на 30–40 минут. К разговору подготовим
+      расширенное портфолио, образцы материалов и предварительную схему по одному
+      выбранному помещению.</p>
+
+    <ol class="steps" style="margin-top:2rem">
+      <li><span>01</span> Созвон или встреча: задачи, помещения, бюджетная рамка</li>
+      <li><span>02</span> Передача пакета документов для проверки контрагента</li>
+      <li><span>03</span> Выезд на объект, обмеры, концепция по пилотному помещению</li>
+      <li><span>04</span> Договор на пилотный объект — и далее к рамочному соглашению</li>
+    </ol>
+
+    <dl class="contact__grid">
+      <div>
+        <dt>Телефон</dt>
+        <dd><a href="tel:+79136263444">+7 (913) 626-34-44</a></dd>
+      </div>
+      <div>
+        <dt>Почта</dt>
+        <dd><a href="mailto:m.anna@a-stra55.ru">m.anna@a-stra55.ru</a></dd>
+      </div>
+      <div>
+        <dt>Telegram</dt>
+        <dd><a href="https://t.me/R2D2_55">@R2D2_55</a></dd>
+      </div>
+      <div>
+        <dt>Сайт</dt>
+        <dd><a href="https://www.m-astra.ru">www.m-astra.ru</a></dd>
+      </div>
+      <div>
+        <dt>Производство</dt>
+        <dd>г. Омск</dd>
+      </div>
+    </dl>
+
+    <div class="signature">
+      <span>A · СТРА — мастерская авторской мебели</span>
+      <span>Портфолио: alexdmitrievi.github.io/Ravil</span>
+      <span>Предложение действительно 60 дней с даты отправки</span>
+    </div>
+  </div>
+</section>
+
+<button class="print-hint" onclick="window.print()">Сохранить в PDF</button>
+
+
+<script>
+  document.querySelectorAll('img[data-local]').forEach(function (img) {
+    img.addEventListener('error', function () {
+      if (!img.dataset.tried) {           // 1. пробуем файл из папки images/
+        img.dataset.tried = '1';
+        img.src = img.dataset.local;
+        return;
+      }
+      var box = img.closest('.object__media, figure');   // 2. аккуратная заглушка
+      if (box) {
+        box.classList.add('media--missing');
+        box.setAttribute('data-label', img.alt || '');
+      }
+      img.remove();
+    });
+  });
+</script>
+</body>
+</html>
